@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raylan Electrical Systems Inc. — Commercial Electrical &amp; Mechanical Contractor, Toronto</title>
+<link rel="icon" id="favicon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%3Cstyle%3E%0A.bolt%7Bfill%3A%232C5AA0%3Btransform-box%3Afill-box%3Btransform-origin%3Acenter%3Banimation%3Aspin%203.2s%20ease-in-out%20infinite%3B%7D%0A%40keyframes%20spin%7B0%25%7Btransform%3Arotate%280deg%29%20scale%281%29%3B%7D50%25%7Btransform%3Arotate%28180deg%29%20scale%281.15%29%3B%7D100%25%7Btransform%3Arotate%28360deg%29%20scale%281%29%3B%7D%7D%0A%3C/style%3E%0A%3Cpath%20class%3D%22bolt%22%20d%3D%22M17%201.5%20L6.5%2018%20L13.5%2018%20L12.5%2030.5%20L25.5%2012.5%20L18%2012.5%20Z%22/%3E%0A%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-2:#F4F6FA; --panel:rgba(255,255,255,0.6); --panel-2:rgba(236,240,246,0.58);
+    --line:#DDE2EA; --line-soft:#E8EBF1;
+    --ink:#101826; --ink-dim:#576174; --ink-faint:#6C7688;
+    --brass:#16345E; --brass-bright:#2C5AA0; --brass-deep:#0E2440;
+    --on-accent:#FFFFFF;
+    --chip:#FFFFFF; --chip-ink:#16345E;
+    --c-elec:#16345E; --c-fire:#B5573F; --c-sec:#6C7A93; --c-comm:#3E8E8E; --c-auto:#B08D57; --c-power:#8C6FB0;
+    --glass:rgba(255,255,255,0.4); --glass-alt:rgba(244,246,250,0.38);
+    --display:'Manrope', sans-serif; --sans:'Inter', sans-serif; --mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--glass); backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px); color:var(--ink); font-family:var(--sans); line-height:1.65; -webkit-font-smoothing:antialiased;}
+  #bg-scene{position:absolute; top:0; left:0; z-index:-1; pointer-events:none; display:block;}
+  a{color:inherit; text-decoration:none;}
+  img,canvas,iframe{display:block;}
+  ::selection{background:var(--brass); color:var(--on-accent);}
+
+  /* ---------- 3D icon badges (nav + footer) ---------- */
+  .icon-3d{width:24px; height:24px; border-radius:6px; background:var(--panel-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; flex:none; transform-style:preserve-3d; box-shadow:0 2px 0 0 var(--line), 0 5px 10px rgba(16,24,38,0.14); transition:transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s, background 0.3s, border-color 0.3s;}
+  .icon-3d svg{width:13px; height:13px; color:var(--ink-dim); transition:color 0.3s;}
+  .icon-3d-lg{width:28px; height:28px; border-radius:7px; animation:iconIdleTilt 5.5s ease-in-out infinite;}
+  .icon-3d-lg svg{width:14px; height:14px;}
+  @keyframes iconIdleTilt{0%,100%{transform:rotateY(-10deg);} 50%{transform:rotateY(10deg);}}
+  a:hover .icon-3d{transform:rotateX(-16deg) rotateY(16deg) translateZ(4px); background:var(--brass); border-color:var(--brass-deep); box-shadow:-3px 4px 0 0 var(--brass-deep), -3px 6px 16px rgba(22,52,94,0.35);}
+  a:hover .icon-3d svg{color:var(--on-accent);}
+
+  .eyebrow{font-family:var(--mono); font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--brass-bright); display:flex; align-items:center; gap:10px;}
+  .eyebrow::before{content:""; width:18px; height:1px; background:var(--brass); display:inline-block;}
+
+  /* ---------- 3D brand mark (header/footer): rendered lightning-bolt geometry ---------- */
+  .brand{display:flex; align-items:center; gap:12px;}
+  .bolt-mark{width:30px; height:30px; flex:none;}
+  .brand img{height:28px; width:auto;}
+
+  .util-bar{background:var(--glass-alt); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border-bottom:1px solid var(--line-soft); font-family:var(--mono); font-size:11.5px; color:var(--ink-faint); display:flex; justify-content:space-between; padding:9px 5%; letter-spacing:0.03em;}
+
+  /* ---------- mobile navigation ---------- */
+  .hamburger{display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:40px; height:40px; border:1px solid var(--line); border-radius:8px; background:var(--panel-2); cursor:pointer; flex:none;}
+  .hamburger span{display:block; width:18px; height:2px; background:var(--ink); border-radius:2px; transition:transform 0.3s ease, opacity 0.3s ease;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .mobile-menu{position:fixed; inset:0; z-index:200; background:rgba(255,255,255,0.98); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); display:flex; flex-direction:column; padding:20px 24px 30px; transform:translateY(-8px); opacity:0; pointer-events:none; transition:opacity 0.3s ease, transform 0.35s cubic-bezier(.2,.8,.2,1); overflow-y:auto;}
+  .mobile-menu.open{opacity:1; transform:translateY(0); pointer-events:auto;}
+  .mobile-menu-header{display:flex; align-items:center; justify-content:space-between; padding-bottom:18px; border-bottom:1px solid var(--line); margin-bottom:8px;}
+  .mobile-close{width:40px; height:40px; border:1px solid var(--line); border-radius:8px; background:var(--panel-2); font-size:22px; line-height:1; color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center;}
+  .mobile-link{display:flex; align-items:center; gap:14px; padding:18px 4px; border-bottom:1px solid var(--line); font-family:var(--display); font-weight:700; font-size:19px; color:var(--ink);}
+  .mobile-link .icon-3d{width:30px; height:30px;}
+  .mobile-link .icon-3d svg{width:15px; height:15px;}
+  .mobile-menu-footer{margin-top:auto; padding-top:24px; display:flex; flex-direction:column; gap:14px;}
+  .mobile-phone{font-family:var(--mono); font-size:16px; color:var(--brass); text-align:center;}
+  @media (max-width:980px){ .hamburger{display:flex;} }
+  .util-bar a{color:var(--ink-dim); transition:color 0.2s;}
+  .util-bar a:hover{color:var(--brass-bright);}
+  .util-bar .util-right{display:flex; gap:26px;}
+
+  nav.main-nav{position:sticky; top:14px; z-index:50; display:flex; align-items:center; justify-content:space-between; width:90%; max-width:1360px; margin:14px auto 0; padding:11px 24px; background:rgba(255,255,255,0.86); backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:999px; box-shadow:0 20px 46px rgba(16,24,38,0.18); transition:box-shadow 0.3s, background 0.3s, padding 0.3s, border-color 0.3s;}
+  nav.main-nav.scrolled{box-shadow:0 26px 60px rgba(16,24,38,0.26), 0 0 0 1px rgba(22,52,94,0.25); background:rgba(255,255,255,0.98); border-color:var(--brass); padding:9px 24px;}
+  .nav-links{display:flex; gap:32px; font-size:14px; color:var(--ink-dim); font-weight:500;}
+  .nav-item{position:relative; perspective:900px;}
+  .nav-dropdown{position:absolute; top:100%; left:50%; width:440px; background:rgba(255,255,255,0.98); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid var(--line); border-radius:14px; box-shadow:0 34px 64px rgba(16,24,38,0.28); padding:20px; display:grid; grid-template-columns:1.1fr 1fr; gap:18px; opacity:0; pointer-events:none; transform:translateX(-50%) translateY(-8px) rotateX(-10deg); transform-origin:top center; transition:opacity 0.3s ease, transform 0.4s cubic-bezier(.2,.8,.2,1); z-index:60;}
+  .nav-item:hover .nav-dropdown{opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(0) rotateX(0deg);}
+  .dropdown-links{display:flex; flex-direction:column; gap:2px;}
+  .dropdown-links a{display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:8px; font-size:13px; color:var(--ink-dim); transition:background 0.2s, color 0.2s;}
+  .dropdown-links a:hover{background:var(--panel-2); color:var(--ink);}
+  .dropdown-links a svg{width:13px; height:13px; flex:none; color:var(--brass);}
+  .dropdown-links a span.sub{display:block; font-family:var(--mono); font-size:10px; color:var(--ink-faint);}
+  .dropdown-feature{background:rgba(236,240,246,0.95); border:1px solid var(--line); border-radius:10px; padding:18px; display:flex; flex-direction:column; justify-content:flex-start;}
+  .dropdown-feature .feat-icon{width:30px; height:30px; border-radius:8px; background:var(--brass); color:var(--on-accent); display:flex; align-items:center; justify-content:center; margin-bottom:12px;}
+  .dropdown-feature .feat-icon svg{width:16px; height:16px;}
+  .dropdown-feature h4{font-family:var(--display); font-weight:700; font-size:14px; margin-bottom:6px;}
+  .dropdown-feature p{font-size:12px; color:var(--ink-dim); margin-bottom:14px; line-height:1.5;}
+  .dropdown-feature .svc-link{margin-top:auto;}
+  .nav-links a{position:relative; transition:color 0.2s; display:flex; align-items:center; gap:9px;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{display:flex; align-items:center; gap:22px;}
+  .nav-cta .phone{font-family:var(--mono); font-size:13px; color:var(--ink-dim);}
+  .btn{font-family:var(--sans); font-weight:600; font-size:13.5px; padding:12px 22px; border-radius:2px; display:inline-flex; align-items:center; gap:8px; transition:background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;}
+  .btn-primary{background:var(--brass); color:var(--on-accent); border:1px solid var(--brass);}
+  .btn-primary:hover{background:var(--brass-bright); border-color:var(--brass-bright); transform:translateY(-2px); box-shadow:0 10px 24px rgba(176,141,87,0.35);}
+  .btn-ghost{border:1px solid var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--brass); color:var(--brass-bright); transform:translateY(-2px);}
+
+  section{position:relative;}
+  .inner{max-width:1360px; margin:0 auto;}
+
+  /* ---------- hero ---------- */
+  header.hero{padding:80px 5% 0; perspective:1500px;}
+  .hero-grid{display:grid; grid-template-columns:0.92fr 1.08fr; gap:56px; align-items:start; max-width:1400px; margin:0 auto;}
+  .hero h1{font-family:var(--display); font-weight:800; font-size:clamp(34px, 3.8vw, 52px); line-height:1.1; letter-spacing:-0.02em; margin:20px 0 24px; max-width:560px;}
+  .hero p.lead{font-size:16px; color:var(--ink-dim); max-width:480px; margin-bottom:32px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:48px;}
+  .stat-strip{display:flex; border-top:1px solid var(--line); max-width:540px; perspective:600px;}
+  .stat{padding:20px 26px 0 0; margin-right:26px; border-right:1px solid var(--line); transform:rotateX(-70deg); transform-origin:top; opacity:0; transition:transform 0.7s cubic-bezier(.2,.8,.2,1), opacity 0.7s;}
+  .stat.in{transform:rotateX(0deg); opacity:1;}
+  .stat:last-child{border-right:none; margin-right:0;}
+  .stat b{font-family:var(--display); font-weight:800; font-size:28px; display:block; margin-bottom:4px;}
+  .stat span{font-family:var(--mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint);}
+
+  .drawing-sheet{position:relative; border:1px solid var(--line); background:var(--panel); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); transition:transform 0.4s ease, box-shadow 0.4s ease; transform-style:preserve-3d;}
+  .drawing-sheet .corner{position:absolute; width:16px; height:16px;}
+  .corner.tl{top:-1px; left:-1px; border-top:1.5px solid var(--brass); border-left:1.5px solid var(--brass);}
+  .corner.tr{top:-1px; right:-1px; border-top:1.5px solid var(--brass); border-right:1.5px solid var(--brass);}
+  .corner.bl{bottom:-1px; left:-1px; border-bottom:1.5px solid var(--brass); border-left:1.5px solid var(--brass);}
+  .corner.br{bottom:-1px; right:-1px; border-bottom:1.5px solid var(--brass); border-right:1.5px solid var(--brass);}
+  .drawing-canvas-wrap{width:100%; aspect-ratio:1/1.08; position:relative;}
+  #scene-canvas{width:100%; height:100%;}
+  .legend-row{display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--line); font-family:var(--mono); font-size:10px; color:var(--ink-faint);}
+  .legend-row div{padding:10px 14px; display:flex; align-items:center; gap:7px; border-right:1px solid var(--line);}
+  .legend-row div:last-child{border-right:none;}
+  .legend-dot{width:7px; height:7px; border-radius:50%; flex:none;}
+  .title-block{display:flex; border-top:1px solid var(--line); font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); letter-spacing:0.03em;}
+  .title-block div{padding:12px 18px; border-right:1px solid var(--line); flex:1;}
+  .title-block div:last-child{border-right:none;}
+  .title-block b{color:var(--ink-dim); font-weight:500; display:block; margin-bottom:3px; letter-spacing:0.1em;}
+
+  /* ---------- process strip: Design / Install / Maintain ---------- */
+  .process-band{padding:0 5%; margin-top:-1px; perspective:1500px;}
+  .process-grid{max-width:1360px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .process-item{padding:34px 30px; border-right:1px solid var(--line); display:flex; gap:18px; align-items:flex-start; perspective:700px;}
+  .process-item:last-child{border-right:none;}
+  .process-num{font-family:var(--display); font-weight:800; font-size:26px; color:var(--brass); flex:none; transition:transform 0.4s ease;}
+  .process-item:hover .process-num{transform:rotateY(180deg);}
+  .process-item h3{font-family:var(--display); font-weight:700; font-size:16.5px; margin-bottom:6px;}
+  .process-item p{font-size:13.5px; color:var(--ink-dim);}
+
+  /* ---------- marquee ticker ---------- */
+  .marquee{overflow:hidden; white-space:nowrap; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:14px 0; margin-top:44px;}
+  .marquee-track{display:inline-flex; animation:marqueeMove 22s linear infinite;}
+  .marquee-track span{font-family:var(--mono); font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-faint); padding-right:26px; display:inline-flex; align-items:center; gap:26px;}
+  .marquee-track span::after{content:"—"; color:var(--brass); padding-left:26px;}
+  @keyframes marqueeMove{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+  /* ---------- checklist tri-columns ---------- */
+  .checklist-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:44px; margin-bottom:56px;}
+  .checklist-col{background:var(--panel); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); padding:26px 24px;}
+  .checklist-col h4{font-family:var(--display); font-weight:700; font-size:15px; margin-bottom:14px;}
+  .checklist-col ul{list-style:none;}
+  .checklist-col li{display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--ink-dim); margin-bottom:10px;}
+  .checklist-col li:last-child{margin-bottom:0;}
+  .checklist-col svg{width:14px; height:14px; flex:none; color:var(--brass-bright); margin-top:2px;}
+
+  /* ---------- testimonial slider ---------- */
+  .testi-slider{perspective:1600px; max-width:820px; margin-top:50px;}
+  .testi-track{position:relative; height:230px;}
+  .testi-slide{position:absolute; inset:0; background:var(--panel); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid var(--line); padding:32px 34px; opacity:0; transform:rotateX(90deg); transform-origin:center; transition:opacity 0.5s ease, transform 0.6s cubic-bezier(.2,.8,.2,1); pointer-events:none; display:flex; flex-direction:column; justify-content:space-between;}
+  .testi-slide.active{opacity:1; transform:rotateX(0deg); pointer-events:auto;}
+  .testi-slide q{font-size:16px; color:var(--ink); line-height:1.6; font-style:normal;}
+  .testi-slide-who{display:flex; align-items:center; gap:14px; margin-top:20px;}
+  .testi-avatar{width:42px; height:42px; border-radius:50%; background:var(--brass); color:var(--on-accent); display:flex; align-items:center; justify-content:center; font-family:var(--display); font-weight:700; font-size:14px; flex:none;}
+  .testi-slide-who b{font-family:var(--sans); font-size:13.5px; font-weight:600; display:block;}
+  .testi-slide-who span{font-family:var(--mono); font-size:11px; color:var(--ink-faint);}
+  .testi-controls{display:flex; align-items:center; gap:18px; margin-top:24px;}
+  .testi-arrow{width:34px; height:34px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; color:var(--ink-dim); transition:border-color 0.2s, color 0.2s; cursor:pointer;}
+  .testi-arrow:hover{border-color:var(--brass); color:var(--brass-bright);}
+  .testi-dots{display:flex; gap:8px;}
+  .testi-dot{width:7px; height:7px; border-radius:50%; background:var(--line); cursor:pointer; transition:background 0.2s, transform 0.2s;}
+  .testi-dot.active{background:var(--brass); transform:scale(1.3);}
+
+  /* ---------- CTA band ---------- */
+  .cta-band{background:var(--panel-2); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-top:1px solid var(--line); padding:80px 5%; text-align:center; perspective:1500px;}
+  .cta-band h2{font-family:var(--display); font-weight:800; font-size:clamp(24px,3vw,38px); max-width:760px; margin:16px auto 30px; letter-spacing:-0.01em;}
+
+  .band{padding:120px 5%; border-top:1px solid var(--line); perspective:1500px;}
+  .band.alt{background:var(--glass-alt); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);}
+
+  .grid-2{display:grid; grid-template-columns:0.85fr 1.35fr; gap:80px; align-items:center;}
+  .grid-2 h2, h2.section-title{font-family:var(--display); font-weight:800; font-size:clamp(26px, 2.6vw, 36px); line-height:1.2; margin:16px 0 0; letter-spacing:-0.01em;}
+  .copy p{color:var(--ink-dim); margin-bottom:18px; max-width:600px; font-size:15.5px;}
+  .copy p:last-child{margin-bottom:0;}
+  .copy strong{color:var(--ink); font-weight:600;}
+  .founder-row{display:flex; align-items:center; gap:20px; margin-top:28px; padding-top:22px; border-top:1px solid var(--line);}
+  .founder-tag{font-family:var(--mono); font-size:11.5px; color:var(--ink-faint); letter-spacing:0.04em;}
+
+  .seal{width:64px; height:64px; border-radius:50%; border:1px solid var(--brass); display:flex; align-items:center; justify-content:center; flex:none; perspective:400px; cursor:default;}
+  .seal-inner{width:100%; height:100%; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:transform 0.5s ease; transform-style:preserve-3d;}
+  .seal:hover .seal-inner{transform:rotateY(360deg);}
+  .seal-inner span{font-family:var(--mono); font-size:9px; color:var(--brass-bright); text-align:center; line-height:1.4; letter-spacing:0.04em;}
+
+  .section-head{margin-bottom:52px; max-width:640px;}
+  .section-head h2{margin-top:14px;}
+  .section-head p{color:var(--ink-dim); margin-top:16px; font-size:15.5px; max-width:560px;}
+
+  /* ---------- services: isometric relief wall + 3D flip ---------- */
+  .services-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:34px 24px; perspective:2400px; padding:20px 10px 30px;}
+  .reveal.svc-reveal{opacity:0; transform:translate3d(var(--fx,0px), var(--fy,90px), -320px) rotateX(var(--frx,45deg)) rotateY(var(--fry,0deg)) rotateZ(var(--frz,0deg)) scale(0.6); transition:opacity 0.7s ease, transform 1.05s cubic-bezier(.34,1.56,.64,1);}
+  .reveal.svc-reveal.in{opacity:1; transform:translate3d(0,0,0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);}
+  .svc-card{perspective:1200px; height:240px; transition:transform 0.5s cubic-bezier(.2,.8,.2,1), filter 0.4s; transform:rotateX(7deg);}
+  .svc-card:nth-child(3n+1){transform:rotateX(7deg) translateZ(4px) translateY(2px);}
+  .svc-card:nth-child(3n+2){transform:rotateX(7deg) translateZ(26px) translateY(-6px);}
+  .svc-card:nth-child(3n+3){transform:rotateX(7deg) translateZ(-14px) translateY(6px);}
+  .svc-card{filter:drop-shadow(0 18px 22px rgba(16,24,38,0.16));}
+  .svc-card:hover{transform:rotateX(0deg) translateZ(38px) translateY(-10px); filter:drop-shadow(0 26px 32px rgba(16,24,38,0.24));}
+  .svc-flip{position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform 0.7s cubic-bezier(.2,.8,.2,1);}
+  .svc-card:hover .svc-flip{transform:rotateY(180deg);}
+  .svc-card.tap-flip .svc-flip{transform:rotateY(180deg);}
+  .svc-face{position:absolute; inset:0; backface-visibility:hidden; border:1px solid var(--line); background:var(--panel); backdrop-filter:blur(9px); -webkit-backdrop-filter:blur(9px); padding:26px 24px;}
+  .svc-back{transform:rotateY(180deg); background:var(--panel-2); display:flex; flex-direction:column; justify-content:space-between;}
+  .svc-num{font-family:var(--mono); font-size:10.5px; color:var(--brass); letter-spacing:0.1em;}
+  .svc-icon{width:28px; height:28px; margin:20px 0 18px; color:var(--ink-dim);}
+  .svc-card h3{font-family:var(--display); font-weight:700; font-size:18px; margin-bottom:8px; letter-spacing:-0.005em;}
+  .svc-card p{color:var(--ink-dim); font-size:14px;}
+  .svc-back p{color:var(--ink-dim); font-size:14px; margin-bottom:16px;}
+  .svc-link{font-family:var(--mono); font-size:11.5px; color:var(--brass-bright); letter-spacing:0.04em; display:inline-flex; align-items:center; gap:6px;}
+
+  /* ---------- tilt-ready blocks ---------- */
+  .tilt{transform-style:preserve-3d; transition:transform 0.15s ease-out, box-shadow 0.3s ease;}
+  .tilt:hover{box-shadow:0 26px 44px rgba(16,24,38,0.18);}
+
+  /* ---------- safety badges: hanging ID cards on a lanyard, swinging ---------- */
+  .badges-row{display:flex; flex-wrap:wrap; gap:40px; margin-top:60px; perspective:900px;}
+  .hang-badge{width:132px; transform-origin:top center; transform-style:preserve-3d; animation:badgeSwing 4.6s ease-in-out infinite;}
+  .hang-badge:hover{animation-play-state:paused;}
+  .hang-string{width:2px; height:24px; background:var(--ink-faint); margin:0 auto;}
+  .hang-card{position:relative; background:var(--chip); border:1px solid var(--line); border-radius:6px; padding:20px 14px 16px; display:flex; align-items:center; justify-content:center; height:64px; box-shadow:0 16px 28px rgba(16,24,38,0.14); transition:transform 0.25s ease, box-shadow 0.25s ease;}
+  .hang-card::before{content:""; position:absolute; top:-8px; left:50%; margin-left:-7px; width:14px; height:14px; border-radius:50%; background:var(--bg); border:2px solid var(--ink-faint);}
+  .hang-badge:hover .hang-card{transform:scale(1.07); box-shadow:0 22px 36px rgba(16,24,38,0.2);}
+  .hang-card img{height:26px; width:auto; max-width:100%; object-fit:contain;}
+  @keyframes badgeSwing{0%,100%{transform:rotate(-3.5deg);} 50%{transform:rotate(3.5deg);}}
+
+  /* ---------- community: spinning medallions ---------- */
+  .community-static{display:flex; flex-wrap:wrap; gap:30px; margin-top:52px; perspective:1000px;}
+  .medallion{width:112px; height:112px; position:relative; transform-style:preserve-3d; animation:medallionSpin 8s linear infinite;}
+  .medallion:hover{animation-play-state:paused;}
+  .medallion-face{position:absolute; inset:0; border-radius:50%; background:var(--chip); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; backface-visibility:hidden; padding:16px; box-shadow:0 16px 30px rgba(16,24,38,0.14);}
+  .medallion-face img{max-width:76%; max-height:58%; object-fit:contain;}
+  .medallion-back{transform:rotateY(180deg); background:var(--panel-2); border:1px solid var(--brass); flex-direction:column; gap:6px;}
+  .medallion-back svg{width:22px; height:22px; color:var(--brass-bright);}
+  .medallion-back span{font-family:var(--mono); font-size:8px; color:var(--ink-faint); text-align:center; letter-spacing:0.06em; text-transform:uppercase;}
+  @keyframes medallionSpin{from{transform:rotateY(0deg);} to{transform:rotateY(360deg);}}
+
+  /* ---------- 3D ring stage (shared: clients + testimonials) ---------- */
+  .ring-stage{perspective:1600px; position:relative;}
+  .ring{position:absolute; top:50%; left:50%; width:0; height:0; transform-style:preserve-3d;}
+  .ring.spin{animation:ringSpin 50s linear infinite;}
+  .ring-stage:hover .ring.spin{animation-play-state:paused;}
+  @keyframes ringSpin{from{transform:rotateY(0deg);} to{transform:rotateY(360deg);}}
+
+  .clients-stage{height:230px; margin-top:56px;}
+  .ring-item{position:absolute; width:176px; height:92px; left:-88px; top:-46px; background:var(--chip); border:1px solid var(--line); border-radius:4px; display:flex; align-items:center; justify-content:center; backface-visibility:hidden; padding:16px; box-shadow:0 12px 26px rgba(16,24,38,0.12);}
+  .ring-item img{max-width:100%; max-height:100%; object-fit:contain;}
+
+  .testi-stage{height:300px; margin-top:52px;}
+  .testi-item{position:absolute; width:320px; height:230px; left:-160px; top:-115px; background:var(--panel); backdrop-filter:blur(9px); -webkit-backdrop-filter:blur(9px); border:1px solid var(--line); backface-visibility:hidden; padding:26px; display:flex; flex-direction:column; justify-content:space-between;}
+  .testi-item q{font-size:14px; color:var(--ink); line-height:1.6; font-style:normal;}
+  .testi-who{font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); letter-spacing:0.02em;}
+  .testi-who b{color:var(--ink-dim); display:block; font-family:var(--sans); font-size:13px; margin-bottom:2px; font-weight:600;}
+
+  /* ---------- team: parallax wall + floating cards + 3D flip ---------- */
+  .team-stage{perspective:2200px; margin-top:60px;}
+  .team-grid{display:grid; grid-template-columns:repeat(5, 1fr); gap:22px; transform-style:preserve-3d; transition:transform 0.25s ease-out; will-change:transform;}
+  .team-card{perspective:1000px; height:310px; position:relative; transform-style:preserve-3d; transition:transform 0.4s cubic-bezier(.2,.8,.2,1); z-index:1;}
+  .team-card:hover{transform:translateZ(70px) scale(1.06); z-index:5;}
+  .team-float{width:100%; height:100%; animation:teamFloat 4.6s ease-in-out infinite; animation-delay:var(--fd, 0s);}
+  .team-card:hover .team-float{animation-play-state:paused;}
+  @keyframes teamFloat{0%,100%{transform:translateY(0px);} 50%{transform:translateY(-7px);}}
+  .team-flip{position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform 0.7s cubic-bezier(.2,.8,.2,1);}
+  .team-card:hover .team-flip{transform:rotateY(180deg);}
+  .team-card.tap-flip .team-flip{transform:rotateY(180deg);}
+  .team-face{position:absolute; inset:0; backface-visibility:hidden; border:1px solid var(--line); background:var(--panel); backdrop-filter:blur(9px); -webkit-backdrop-filter:blur(9px); overflow:hidden; transition:box-shadow 0.4s ease, border-color 0.4s ease;}
+  .team-card:hover .team-face{box-shadow:0 0 0 1px var(--brass), 0 34px 54px rgba(16,24,38,0.22); border-color:var(--brass);}
+  .team-face img{width:100%; height:76%; object-fit:contain; object-position:center; background:var(--panel-2); filter:grayscale(0.75); display:block;}
+  .team-face .info{padding:14px 16px;}
+  .team-face h4{font-family:var(--display); font-weight:700; font-size:14.5px;}
+  .team-face span{font-family:var(--mono); font-size:10px; color:var(--brass-bright); letter-spacing:0.03em; display:block; margin-top:4px;}
+  .team-back{transform:rotateY(180deg); background:var(--panel-2); padding:22px 18px; display:flex; flex-direction:column; justify-content:center;}
+  .team-back h4{font-family:var(--display); font-weight:700; font-size:15px; margin-bottom:6px;}
+  .team-back span.role{font-family:var(--mono); font-size:10px; color:var(--brass-bright); letter-spacing:0.03em; display:block; margin-bottom:12px;}
+  .team-back p{font-size:12.5px; color:var(--ink-dim); line-height:1.55;}
+
+  .case-study{max-width:900px;}
+  .case-tag{font-family:var(--mono); font-size:11px; color:var(--brass-bright); border:1px solid var(--brass); display:inline-block; padding:6px 14px; margin-bottom:24px; letter-spacing:0.08em;}
+  .case-study h2{font-family:var(--display); font-weight:800; font-size:clamp(24px,2.6vw,34px); line-height:1.3; margin-bottom:22px; letter-spacing:-0.01em;}
+  .case-study p{color:var(--ink-dim); font-size:16px; max-width:660px; margin-bottom:26px;}
+
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:50px; align-items:stretch; perspective:1400px;}
+  .map-frame{border:1px solid var(--line); background:var(--panel); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); position:relative; min-height:380px; overflow:hidden;}
+  .map-frame iframe{width:100%; height:100%; min-height:380px; border:0; filter:grayscale(0.15) contrast(0.98); position:absolute; inset:0;}
+  .globe-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:2; transition:opacity 0.8s ease;}
+  .globe-hud{position:absolute; left:0; right:0; bottom:22px; z-index:3; text-align:center; font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--brass-bright); pointer-events:none; opacity:0; transition:opacity 0.4s ease;}
+  .globe-hud.show{opacity:1;}
+  .replay-btn{position:absolute; right:14px; bottom:14px; z-index:4; font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em; color:var(--ink-dim); background:rgba(255,255,255,0.85); backdrop-filter:blur(6px); border:1px solid var(--line); padding:8px 12px; cursor:pointer; transition:color 0.2s, border-color 0.2s; box-shadow:0 8px 18px rgba(16,24,38,0.14);}
+  .replay-btn:hover{color:var(--brass-bright); border-color:var(--brass);}
+  .contact-card{border:1px solid var(--line); background:var(--panel); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); padding:36px; display:flex; flex-direction:column; justify-content:space-between;}
+  .contact-line{display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--line); font-size:14.5px;}
+  .contact-line:last-child{border-bottom:none;}
+  .contact-line span:first-child{color:var(--ink-faint); font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;}
+  .contact-line a{color:var(--ink); transition:color 0.2s;}
+  .contact-line a:hover{color:var(--brass-bright);}
+
+  /* ---------- footer with perspective floor grid ---------- */
+  footer{position:relative; padding:110px 5% 0; background:var(--glass-alt); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-top:1px solid var(--line); overflow:hidden;}
+  .footer-floorgrid{position:absolute; left:-10%; right:-10%; bottom:0; height:320px; background-image:linear-gradient(#CBD3E0 1px, transparent 1px), linear-gradient(90deg, #CBD3E0 1px, transparent 1px); background-size:44px 44px; transform:perspective(500px) rotateX(62deg); transform-origin:bottom; opacity:0.6; pointer-events:none; z-index:0; mask-image:linear-gradient(to top, black, transparent); -webkit-mask-image:linear-gradient(to top, black, transparent);}
+  .footer-grid{position:relative; z-index:1; display:grid; grid-template-columns:1.3fr 0.8fr 0.8fr 0.9fr; gap:50px; padding-bottom:64px; max-width:1360px; margin:0 auto;}
+  .footer-brand .brand{margin-bottom:18px;}
+  .footer-brand p{color:var(--ink-faint); font-size:14px; max-width:300px;}
+  .footer-col h4{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:20px; display:flex; align-items:center; gap:9px;}
+  .footer-col div{color:var(--ink-dim); font-size:14px; margin-bottom:12px; display:flex; align-items:center; gap:9px;}
+  .footer-col a{display:inline-flex; align-items:center; gap:9px;}
+  .footer-col a:hover{color:var(--brass-bright);}
+  .footer-bottom{position:relative; z-index:1; max-width:1360px; margin:0 auto; padding:26px 0 34px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:var(--mono); font-size:11px; color:var(--ink-faint); letter-spacing:0.03em;}
+
+  .reveal{opacity:0; transform:translateY(46px) rotateX(9deg); transform-origin:top center; transition:opacity 0.9s ease, transform 0.9s cubic-bezier(.16,.84,.44,1);}
+  .reveal.in{opacity:1; transform:translateY(0) rotateX(0deg);}
+
+  @media (max-width:980px){
+    .nav-links{display:none;}
+    .nav-cta .phone{display:none;}
+    .nav-cta .btn-primary{display:none;}
+    .hero-grid, .grid-2, .contact-grid{grid-template-columns:1fr; gap:40px;}
+    .process-grid{grid-template-columns:1fr;}
+    .process-item{border-right:none; border-bottom:1px solid var(--line);}
+    .checklist-grid{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr; perspective:none;}
+    .svc-card, .svc-card:nth-child(3n+1), .svc-card:nth-child(3n+2), .svc-card:nth-child(3n+3){transform:none;}
+    .svc-card:hover{transform:translateY(-6px);}
+    .team-grid{grid-template-columns:repeat(2,1fr);}
+    .team-card{transform:none !important;}
+    .team-card:hover{transform:translateY(-6px) !important;}
+    .footer-grid{grid-template-columns:1fr 1fr; gap:40px;}
+    .band{padding:70px 6%;}
+    header.hero{padding:56px 6% 0;}
+    .util-bar div:first-child{display:none;}
+    .util-bar{justify-content:center;}
+    .util-bar .util-right{gap:20px;}
+    .clients-stage{height:190px;}
+    .ring-item{width:140px; height:74px; left:-70px; top:-37px; padding:12px;}
+    .testi-stage{height:340px;}
+    .testi-item{width:250px; height:280px; left:-125px; top:-140px; padding:20px;}
+  }
+  @media (max-width:600px){
+    .footer-grid{grid-template-columns:1fr;}
+    .stat-strip{flex-wrap:wrap; gap:18px 0;}
+    .team-grid{grid-template-columns:1fr 1fr;}
+    .ring-item{width:116px; height:64px; left:-58px; top:-32px; padding:10px;}
+    .testi-item{width:210px; height:300px; left:-105px; top:-150px; padding:16px;}
+    .hero h1{font-size:clamp(30px,8vw,40px);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{transition:none; opacity:1; transform:none;}
+    .ring.spin{animation:none;}
+    .stat{transform:none; opacity:1;}
+    .hang-badge{animation:none; transform:none;}
+    .medallion{animation:none; transform:none;}
+    .svc-card, .svc-card:nth-child(3n+1), .svc-card:nth-child(3n+2), .svc-card:nth-child(3n+3){transform:none;}
+    .reveal.svc-reveal{transform:none; transition:opacity 0.4s ease;}
+    .team-float{animation:none;}
+    .team-grid{transform:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-scene" aria-hidden="true"></canvas>
+
+<div class="util-bar">
+  <div>483 Bay Street, B1 Level South — Toronto, ON M5G 2C9</div>
+  <div class="util-right">
+    <a href="tel:4165988892">416-598-8892</a>
+    <a href="#contact">Request a quote</a>
+  </div>
+</div>
+
+<nav class="main-nav" id="mainNav">
+  <a class="brand" href="https://www.raylan.com">
+    <canvas class="bolt-mark" id="boltNav"></canvas>
+    <img src="https://www.raylan.com/wp-content/uploads/2018/01/Raylan-Logo-dark.png" alt="Raylan Electrical Systems Inc.">
+  </a>
+  <div class="nav-links">
+    <a href="#about"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 21 L4 9 L12 4 L20 9 L20 21" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21 L9 14 L15 14 L15 21" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Who We Are</a>
+
+    <div class="nav-item">
+      <a href="#services"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4L21 6l-3-3z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Services</a>
+      <div class="nav-dropdown">
+        <div class="dropdown-links">
+          <a href="https://www.raylan.com/electrical-construction-and-maintenance/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 20 L4 12 L10 12 L10 4 L20 4 M20 4 L20 10 M20 4 L16 4" stroke-linecap="round" stroke-linejoin="round"/></svg>Electrical construction</a>
+          <a href="https://www.raylan.com/fire-alarm-systems/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="4"/></svg>Fire alarm systems</a>
+          <a href="https://www.raylan.com/security-systems/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 L19 6.5 L19 12 C19 16.5 16 19.7 12 21 C8 19.7 5 16.5 5 12 L5 6.5 Z" stroke-linejoin="round"/></svg>Security systems</a>
+          <a href="https://www.raylan.com/communication-network-cabling/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="6" r="2.2"/></svg>Network cabling</a>
+          <a href="https://www.raylan.com/integrated-automation-building-controls/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="1"/></svg>Building automation</a>
+          <a href="https://www.raylan.com/emergency-stand-by-ups-installations/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M13 2 L4 14 L11 14 L10 22 L20 9 L13 9 Z" stroke-linejoin="round" stroke-linecap="round"/></svg>Standby power &amp; UPS</a>
+        </div>
+        <div class="dropdown-feature">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4L21 6l-3-3z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h4>Six disciplines, one team</h4>
+          <p>Design, install and maintain — every electrical and mechanical system a building depends on.</p>
+          <a class="svc-link" href="#services">View all services →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#team"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14c2.5.4 4.5 2.5 4.5 6" stroke-linecap="round"/></svg></span>Our Team</a>
+      <div class="nav-dropdown">
+        <div class="dropdown-links">
+          <a href="#team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/></svg>Bob Garrett <span class="sub">— President</span></a>
+          <a href="#team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/></svg>Meredith McCosh <span class="sub">— Managing Director</span></a>
+          <a href="#team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/></svg>Rollie Leblanc <span class="sub">— Controls Ops</span></a>
+          <a href="#team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/></svg>Vergil Castro <span class="sub">— Project Manager</span></a>
+          <a href="#team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/></svg>Gord MacLean <span class="sub">— Project Manager</span></a>
+        </div>
+        <div class="dropdown-feature">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"/></svg></div>
+          <h4>Our service conduit is our people</h4>
+          <p>Decades of hands-on experience, led by the team that grew up in this business.</p>
+          <a class="svc-link" href="#team">Meet the team →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#clients"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M8 8V6a4 4 0 0 1 8 0v2" stroke-linecap="round"/></svg></span>Clients</a>
+      <div class="nav-dropdown">
+        <div class="dropdown-links">
+          <a href="#clients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="8" width="18" height="12" rx="1.5"/></svg>Trusted by <span class="sub">— Fortune 500 clientele</span></a>
+          <a href="#safety"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 L19 6.5 L19 12 C19 16.5 16 19.7 12 21 C8 19.7 5 16.5 5 12 L5 6.5 Z" stroke-linejoin="round"/></svg>Safety &amp; compliance</a>
+          <a href="#community"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="3"/></svg>Community partners</a>
+        </div>
+        <div class="dropdown-feature">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M8 8V6a4 4 0 0 1 8 0v2" stroke-linecap="round"/></svg></div>
+          <h4>Fortune 500 clientele</h4>
+          <p>RBC, Bell, CIBC, Hydro One, MLSE, TMU and more — built on relationship and track record.</p>
+          <a class="svc-link" href="#clients">See our clients →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#success"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 4h8v4a4 4 0 0 1-8 0V4Z"/><path d="M8 5H5a2 2 0 0 0 2 4M16 5h3a2 2 0 0 1-2 4" stroke-linecap="round"/><path d="M12 12v3M9 19h6M10 19v-2.5h4V19" stroke-linecap="round"/></svg></span>Success</a>
+      <div class="nav-dropdown">
+        <div class="dropdown-links">
+          <a href="https://www.raylan.com/customer-success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 4h8v4a4 4 0 0 1-8 0V4Z"/></svg>Customer success story</a>
+          <a href="https://www.raylan.com/testimonials/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 9h3v4H8a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>Client testimonials</a>
+        </div>
+        <div class="dropdown-feature">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 4h8v4a4 4 0 0 1-8 0V4Z"/><path d="M12 12v3M9 19h6M10 19v-2.5h4V19" stroke-linecap="round"/></svg></div>
+          <h4>Ontario Health, Bay Street</h4>
+          <p>Full-scope electrical solution for a major downtown Toronto expansion.</p>
+          <a class="svc-link" href="#success">Read the story →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-cta">
+    <span class="phone">416-598-8892</span>
+    <a class="btn btn-primary" href="#contact">Request a quote</a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <div class="brand">
+      <canvas class="bolt-mark" id="boltMobile"></canvas>
+      <img src="https://www.raylan.com/wp-content/uploads/2018/01/Raylan-Logo-dark.png" alt="Raylan Electrical Systems Inc.">
+    </div>
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+  </div>
+  <a class="mobile-link" href="#about"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 21 L4 9 L12 4 L20 9 L20 21" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21 L9 14 L15 14 L15 21" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Who We Are</a>
+  <a class="mobile-link" href="#services"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4L21 6l-3-3z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Services</a>
+  <a class="mobile-link" href="#team"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14c2.5.4 4.5 2.5 4.5 6" stroke-linecap="round"/></svg></span>Our Team</a>
+  <a class="mobile-link" href="#clients"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M8 8V6a4 4 0 0 1 8 0v2" stroke-linecap="round"/></svg></span>Clients</a>
+  <a class="mobile-link" href="#success"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 4h8v4a4 4 0 0 1-8 0V4Z"/><path d="M8 5H5a2 2 0 0 0 2 4M16 5h3a2 2 0 0 1-2 4" stroke-linecap="round"/><path d="M12 12v3M9 19h6M10 19v-2.5h4V19" stroke-linecap="round"/></svg></span>Success</a>
+  <div class="mobile-menu-footer">
+    <a class="mobile-phone" href="tel:4165988892">416-598-8892</a>
+    <a class="btn btn-primary" href="#contact" style="justify-content:center;">Request a quote</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-grid">
+    <div class="reveal in">
+      <div class="eyebrow">Licensed electrical &amp; mechanical contractor · Toronto</div>
+      <h1>Electrical and mechanical infrastructure, engineered to run.</h1>
+      <p class="lead">Raylan designs, installs and maintains the commercial electrical, fire, security and building-control systems behind downtown Toronto — with the same standard of delivery since 1989.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#contact">Request a quote</a>
+        <a class="btn btn-ghost" href="#services">View our services</a>
+      </div>
+      <div class="stat-strip">
+        <div class="stat" data-target="1989"><b data-count>0</b><span>Founded</span></div>
+        <div class="stat" data-target="37"><b data-count>0</b><span>Years in operation</span></div>
+        <div class="stat" data-target="6"><b data-count>0</b><span>Integrated disciplines</span></div>
+      </div>
+    </div>
+
+    <div class="drawing-sheet reveal in tilt" id="heroTilt">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="drawing-canvas-wrap"><canvas id="scene-canvas"></canvas></div>
+      <canvas id="faviconCanvas" width="64" height="64" style="display:none;" aria-hidden="true"></canvas>
+      <div class="legend-row">
+        <div><span class="legend-dot" style="background:var(--c-elec)"></span>Electrical</div>
+        <div><span class="legend-dot" style="background:var(--c-fire)"></span>Fire alarm</div>
+        <div><span class="legend-dot" style="background:var(--c-sec)"></span>Security</div>
+        <div><span class="legend-dot" style="background:var(--c-comm)"></span>Comms</div>
+        <div><span class="legend-dot" style="background:var(--c-auto)"></span>Automation</div>
+        <div><span class="legend-dot" style="background:var(--c-power)"></span>Standby power</div>
+      </div>
+      <div class="title-block">
+        <div><b>Dwg No.</b>RE-01-1989</div>
+        <div><b>System</b>Integrated riser — all 6 disciplines</div>
+        <div><b>Scale</b>N.T.S.</div>
+      </div>
+      <div class="title-block" style="font-size:10px;">
+        <div style="border-right:none;"><b>Notes</b>Core shaft carries all six systems · ground-floor switchgear + UPS room feed the riser · rooftop standby generator &amp; HVAC · perimeter camera coverage · podium annex linked by covered walkway</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="process-band reveal">
+  <div class="process-grid">
+    <div class="process-item">
+      <span class="process-num">01</span>
+      <div><h3>Design</h3><p>Engineering the electrical and mechanical systems a commercial building needs.</p></div>
+    </div>
+    <div class="process-item">
+      <span class="process-num">02</span>
+      <div><h3>Install</h3><p>Licensed crews building it right, from conduit runs to final commissioning.</p></div>
+    </div>
+    <div class="process-item">
+      <span class="process-num">03</span>
+      <div><h3>Maintain</h3><p>Ongoing service so what we build keeps running, day in and day out.</p></div>
+    </div>
+  </div>
+</div>
+
+<section class="band" id="about">
+  <div class="inner grid-2 reveal">
+    <div>
+      <div class="eyebrow">Who we are</div>
+      <h2>Integrated electrical and mechanical solutions for the downtown core.</h2>
+    </div>
+    <div class="copy">
+      <p>Since <strong>1989</strong>, Raylan Electrical Systems has provided electrical construction and maintenance, integrated automation and building controls, fire and security systems, structured communication cabling, and standby power to clients across downtown Toronto.</p>
+      <p>The company was founded by the late <strong>Michael Murray</strong> on the principles of integrity, reliability and professionalism — values that continue to define how every project is delivered today.</p>
+      <p>Raylan is owned and led by an experienced management team, and continues to grow on the strength of the people carrying that work forward.</p>
+      <div class="founder-row">
+        <div class="seal"><div class="seal-inner"><span>EST.<br>1989</span></div></div>
+        <div class="founder-tag">Founded 1989 — Michael Murray, Founder</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="services">
+  <div class="inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">What we do</div>
+      <h2 class="section-title">Six disciplines, one accountable team.</h2>
+      <p>From design through installation and ongoing maintenance, Raylan manages every system a commercial building depends on. Hover a card for detail.</p>
+    </div>
+
+    <div class="checklist-grid reveal">
+      <div class="checklist-col">
+        <h4>Electrical &amp; power</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Electrical construction &amp; maintenance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Emergency standby power &amp; UPS</li>
+        </ul>
+      </div>
+      <div class="checklist-col">
+        <h4>Life safety &amp; security</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Fire alarm systems</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Security systems</li>
+        </ul>
+      </div>
+      <div class="checklist-col">
+        <h4>Systems &amp; automation</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Communication &amp; network cabling</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Integrated automation &amp; building controls</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="reveal svc-reveal" style="--fx:-160px; --fy:-70px; --frx:35deg; --fry:-30deg; --frz:-8deg; transition-delay:0s"><div class="svc-card"><div class="svc-flip">
+        <div class="svc-face">
+          <div class="svc-num">01</div>
+          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 20 L4 12 L10 12 L10 4 L20 4 M20 4 L20 10 M20 4 L16 4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg>
+          <h3>Electrical construction &amp; maintenance</h3>
+        </div>
+        <div class="svc-face svc-back">
+          <p>Full-scope commercial design, installation and maintenance for new builds and existing spaces.</p>
+          <a class="svc-link" href="https://www.raylan.com/electrical-construction-and-maintenance/">Learn more →</a>
+        </div>
+      </div></div></div>
+
+      <div class="reveal svc-reveal" style="--fx:0px; --fy:-140px; --frx:55deg; --fry:0deg; --frz:0deg; transition-delay:0.09s"><div class="svc-card"><div class="svc-flip">
+        <div class="svc-face">
+          <div class="svc-num">02</div>
+          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3 L12 6 M12 18 L12 21 M3 12 L6 12 M18 12 L21 12 M6 6 L8 8 M18 6 L16 8 M6 18 L8 16 M18 18 L16 16" stroke-linecap="round"/><circle cx="12" cy="12" r="4"/></svg>
+          <h3>Fire alarm systems</h3>
+        </div>
+        <div class="svc-face svc-back">
+          <p>Technically advanced, code-compliant fire and carbon monoxide detection, installed with safety first.</p>
+          <a class="svc-link" href="https://www.raylan.com/fire-alarm-systems/">Learn more →</a>
+        </div>
+      </div></div></div>
+
+      <div class="reveal svc-reveal" style="--fx:160px; --fy:-70px; --frx:35deg; --fry:30deg; --frz:8deg; transition-delay:0.18s"><div class="svc-card"><div class="svc-flip">
+        <div class="svc-face">
+          <div class="svc-num">03</div>
+          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3 L19 6.5 L19 12 C19 16.5 16 19.7 12 21 C8 19.7 5 16.5 5 12 L5 6.5 Z" stroke-linejoin="round"/><path d="M9 12 L11 14 L15.5 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>Security systems</h3>
+        </div>
+        <div class="svc-face svc-back">
+          <p>Fully integrated, safe and secure solutions built to protect people and property.</p>
+          <a class="svc-link" href="https://www.raylan.com/security-systems/">Learn more →</a>
+        </div>
+      </div></div></div>
+
+      <div class="reveal svc-reveal" style="--fx:-160px; --fy:80px; --frx:-30deg; --fry:-30deg; --frz:8deg; transition-delay:0.27s"><div class="svc-card"><div class="svc-flip">
+        <div class="svc-face">
+          <div class="svc-num">04</div>
+          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M8.1 11 L15.9 6.9 M8.1 13 L15.9 17.1" stroke-linecap="round"/></svg>
+          <h3>Communication &amp; network cabling</h3>
+        </div>
+        <div class="svc-face svc-back">
+          <p>Advanced installation, testing and verification of fibre optic and structured cabling systems.</p>
+          <a class="svc-link" href="https://www.raylan.com/communication-network-cabling/">Learn more →</a>
+        </div>
+      </div></div></div>
+
+      <div class="reveal svc-reveal" style="--fx:0px; --fy:150px; --frx:-50deg; --fry:0deg; --frz:0deg; transition-delay:0.36s"><div class="svc-card"><div class="svc-flip">
+        <div class="svc-face">
+          <div class="svc-num">05</div>
+          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 4 L8 8 L16 8 L16 4 M8 16 L8 20 M16 16 L16 20 M4 12 L8 12 M16 12 L20 12" stroke-linecap="round"/></svg>
+          <h3>Integrated automation &amp; building controls</h3>
+        </div>
+        <div class="svc-face svc-back">
+          <p>Cost-effective, technically smart and energy-conscious automation for commercial spaces.</p>
+          <a class="svc-link" href="https://www.raylan.com/integrated-automation-building-controls/">Learn more →</a>
+        </div>
+      </div></div></div>
+
+      <div class="reveal svc-reveal" style="--fx:160px; --fy:80px; --frx:-30deg; --fry:30deg; --frz:-8deg; transition-delay:0.45s"><div class="svc-card"><div class="svc-flip">
+        <div class="svc-face">
+          <div class="svc-num">06</div>
+          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M13 2 L4 14 L11 14 L10 22 L20 9 L13 9 Z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          <h3>Emergency standby power &amp; UPS</h3>
+        </div>
+        <div class="svc-face svc-back">
+          <p>Customized emergency power, sized and tailored for systems from small to large scale.</p>
+          <a class="svc-link" href="https://www.raylan.com/emergency-stand-by-ups-installations/">Learn more →</a>
+        </div>
+      </div></div></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="band" id="safety">
+  <div class="inner reveal">
+    <div class="eyebrow">Safety &amp; compliance</div>
+    <h2 class="section-title" style="margin-top:14px;">A safe, healthy site is not negotiable.</h2>
+    <p style="color:var(--ink-dim); margin-top:16px; max-width:620px; font-size:15.5px;">There is no room for error when it comes to the wellbeing of our people and partners. Raylan holds a zero-tolerance approach to workplace safety, and maintains standing with the industry's leading compliance and contractor-verification bodies.</p>
+    <div class="badges-row">
+      <div class="hang-badge" style="animation-duration:4.6s; animation-delay:-0.2s;"><div class="hang-string"></div><div class="hang-card"><img src="https://www.raylan.com/wp-content/uploads/2018/01/ecao-1.png" alt="ECAO"></div></div>
+      <div class="hang-badge" style="animation-duration:5.1s; animation-delay:-1.4s;"><div class="hang-string"></div><div class="hang-card"><img src="https://www.raylan.com/wp-content/uploads/2018/01/electrical-safety-authority-1.png" alt="Electrical Safety Authority"></div></div>
+      <div class="hang-badge" style="animation-duration:4.3s; animation-delay:-2.1s;"><div class="hang-string"></div><div class="hang-card"><img src="https://www.raylan.com/wp-content/uploads/2018/01/greater-toronto-electrical-contractors-association.png" alt="Greater Toronto Electrical Contractors Association"></div></div>
+      <div class="hang-badge" style="animation-duration:4.9s; animation-delay:-0.7s;"><div class="hang-string"></div><div class="hang-card"><img src="https://www.raylan.com/wp-content/uploads/2024/02/VF-Network-Badges-2022_Operator.png" alt="Veriforce"></div></div>
+      <div class="hang-badge" style="animation-duration:4.4s; animation-delay:-1.8s;"><div class="hang-string"></div><div class="hang-card"><img src="https://www.raylan.com/wp-content/uploads/2024/02/contractor-check-logo.png" alt="ContractorCheck"></div></div>
+      <div class="hang-badge" style="animation-duration:5.3s; animation-delay:-0.4s;"><div class="hang-string"></div><div class="hang-card"><img src="https://www.raylan.com/wp-content/uploads/2024/02/avetta-logo-vector.png" alt="Avetta"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="clients">
+  <div class="inner reveal">
+    <div class="eyebrow">Trusted by</div>
+    <h2 class="section-title" style="margin-top:14px;">Fortune 500 clientele, delivered on relationship and track record.</h2>
+    <p style="color:var(--ink-dim); margin-top:16px; max-width:600px; font-size:15.5px;">A rotating look at organizations Raylan has worked alongside across downtown Toronto's commercial core.</p>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>Trusted across downtown Toronto</span><span>Fortune 500 clientele</span><span>Serving the Bay Street corridor since 1989</span>
+        <span>Trusted across downtown Toronto</span><span>Fortune 500 clientele</span><span>Serving the Bay Street corridor since 1989</span>
+      </div>
+    </div>
+    <div class="ring-stage clients-stage">
+      <div class="ring spin" id="clientsRing">
+        <div class="ring-item"><img src="https://www.raylan.com/wp-content/uploads/2024/10/TMU-logo2.webp" alt="Toronto Metropolitan University"></div>
+        <div class="ring-item"><img src="https://www.raylan.com/wp-content/uploads/2024/10/triovest-Logo-2.webp" alt="Triovest"></div>
+        <div class="ring-item"><img src="https://www.raylan.com/wp-content/uploads/2024/10/Dream-Unlimited-logo-2.webp" alt="Dream Unlimited"></div>
+        <div class="ring-item"><img src="https://www.raylan.com/wp-content/uploads/2024/10/gwl-share-2.webp" alt="GWL Realty Advisors"></div>
+        <div class="ring-item"><img src="https://www.raylan.com/wp-content/uploads/2024/10/MLSE-Logo.webp" alt="MLSE"></div>
+        <div class="ring-item"><img src="https://www.raylan.com/wp-content/uploads/2018/01/royal-bank.png" alt="RBC Royal Bank"></div>
+        <div class="ring-item"><img src="https://www.raylan.com/wp-content/uploads/2018/01/bell.png" alt="Bell"></div>
+        <div class="ring-item"><img src="https://www.raylan.com/wp-content/uploads/2018/01/cibc.png" alt="CIBC"></div>
+        <div class="ring-item"><img src="https://www.raylan.com/wp-content/uploads/2018/01/hydro-one.png" alt="Hydro One"></div>
+        <div class="ring-item"><img src="https://www.raylan.com/wp-content/uploads/2018/01/bionik-laboratories.png" alt="Bionik Laboratories"></div>
+        <div class="ring-item"><img src="https://www.raylan.com/wp-content/uploads/2018/01/coc.png" alt="Canadian Opera Company — Four Seasons Centre for the Performing Arts"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="team">
+  <div class="inner reveal">
+    <div class="eyebrow">Leadership</div>
+    <h2 class="section-title" style="margin-top:14px;">Our service conduit is our people.</h2>
+    <p style="color:var(--ink-dim); margin-top:16px; max-width:600px; font-size:15.5px;">Raylan is proudly owned and continues to grow under the experience of a management team that has spent decades in this business. Hover to read more.</p>
+    <div class="team-stage">
+    <div class="team-grid" id="teamGrid">
+
+      <div class="reveal" style="transition-delay:0s"><div class="team-card"><div class="team-float" style="--fd:0s"><div class="team-flip">
+        <div class="team-face">
+          <img src="https://www.raylan.com/wp-content/uploads/2024/10/bobby-2-copy-500x500.webp" alt="Bob Garrett">
+          <div class="info"><h4>Bob Garrett</h4><span>President</span></div>
+        </div>
+        <div class="team-face team-back">
+          <h4>Bob Garrett</h4><span class="role">President</span>
+          <p>Started as a summer helper in 1994 under founder Michael Murray, later becoming a Master Electrician. Leads project management with a close, hands-on connection to clients.</p>
+        </div>
+      </div></div></div></div>
+
+      <div class="reveal" style="transition-delay:0.12s"><div class="team-card"><div class="team-float" style="--fd:-0.9s"><div class="team-flip">
+        <div class="team-face">
+          <img src="https://www.raylan.com/wp-content/uploads/2018/01/meredith-mccosh-headshot-500x500.jpg" alt="Meredith McCosh">
+          <div class="info"><h4>Meredith McCosh</h4><span>Managing Director</span></div>
+        </div>
+        <div class="team-face team-back">
+          <h4>Meredith McCosh</h4><span class="role">Managing Director</span>
+          <p>Joined the company in 2007 bringing corporate leadership experience from Canada and abroad. Oversees finance, budgeting and corporate development.</p>
+        </div>
+      </div></div></div></div>
+
+      <div class="reveal" style="transition-delay:0.24s"><div class="team-card"><div class="team-float" style="--fd:-1.8s"><div class="team-flip">
+        <div class="team-face">
+          <img src="https://www.raylan.com/wp-content/uploads/2018/01/rollie-leblanc-headshot-500x500.jpg" alt="Rollie Leblanc">
+          <div class="info"><h4>Rollie Leblanc</h4><span>Controls Operations Manager</span></div>
+        </div>
+        <div class="team-face team-back">
+          <h4>Rollie Leblanc</h4><span class="role">Controls Operations Manager</span>
+          <p>Interprovincial Red Seal, CFAA-registered fire alarm technician and licensed Master Electrician with over thirty years of experience, including work on the GM Oshawa plant and TTC.</p>
+        </div>
+      </div></div></div></div>
+
+      <div class="reveal" style="transition-delay:0.36s"><div class="team-card"><div class="team-float" style="--fd:-2.7s"><div class="team-flip">
+        <div class="team-face">
+          <img src="https://www.raylan.com/wp-content/uploads/2018/01/vergil-castro-headshot-500x500.jpg" alt="Vergil Castro">
+          <div class="info"><h4>Vergil Castro</h4><span>Project Manager</span></div>
+        </div>
+        <div class="team-face team-back">
+          <h4>Vergil Castro</h4><span class="role">Project Manager</span>
+          <p>With Raylan since 1999, a specialist in electrical, card access, fire alarm and CCTV systems, holding Red Seal and Master Electrical certifications.</p>
+        </div>
+      </div></div></div></div>
+
+      <div class="reveal" style="transition-delay:0.48s"><div class="team-card"><div class="team-float" style="--fd:-3.6s"><div class="team-flip">
+        <div class="team-face">
+          <img src="https://www.raylan.com/wp-content/uploads/2024/10/Gord-MacLean-Thumb.webp" alt="Gord MacLean">
+          <div class="info"><h4>Gord MacLean</h4><span>Project Manager</span></div>
+        </div>
+        <div class="team-face team-back">
+          <h4>Gord MacLean</h4><span class="role">Project Manager</span>
+          <p>Over thirty years in the electrical industry, delivering reliable commercial and industrial solutions with a focus on safety and precision.</p>
+        </div>
+      </div></div></div></div>
+
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="success">
+  <div class="inner case-study reveal">
+    <div class="case-tag">Customer success</div>
+    <h2>When Ontario Health expanded to Bay Street, they needed one partner to own the electrical solution end to end.</h2>
+    <p>Choosing a team able to deliver proficiency, innovation and full-scope project management was imperative for a move of this scale into downtown Toronto. Raylan builds relationships on integrity, expertise and a track record of delivery — the same standard brought to Fortune 500 clientele across the core.</p>
+    <a class="btn btn-ghost" href="https://www.raylan.com/customer-success">Read the full story</a>
+
+    <div class="testi-slider">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-slide active">
+          <q>Working with Raylan has been nothing short of excellent, from early card-access support to now handling all of our electrical needs.</q>
+          <div class="testi-slide-who"><div class="testi-avatar">JW</div><div><b>Joe Waldherr</b><span>Associate Director, Facilities Management — Four Seasons Centre for the Performing Arts</span></div></div>
+        </div>
+        <div class="testi-slide">
+          <q>A long-standing partner across projects ranging from small retrofits to large-scale commercial renovations.</q>
+          <div class="testi-slide-who"><div class="testi-avatar">RL</div><div><b>Robert N. Labelle</b><span>President — The Jesslin Group</span></div></div>
+        </div>
+        <div class="testi-slide">
+          <q>Dedicated work on the Gift of Life Network project despite tight deadlines and coordination across multiple trades.</q>
+          <div class="testi-slide-who"><div class="testi-avatar">TM</div><div><b>Tim McEachen</b><span>Senior Project Manager — Fortis Group</span></div></div>
+        </div>
+        <div class="testi-slide">
+          <q>Chief electrical, controls, security and fire alarm provider to the property since it was built in 1983.</q>
+          <div class="testi-slide-who"><div class="testi-avatar">WB</div><div><b>William F. Braun</b><span>General Manager — Northam Realty Advisors Limited</span></div></div>
+        </div>
+        <div class="testi-slide">
+          <q>Chosen for the complexity of a 3D printing research lab, where technical expertise at the highest level was required.</q>
+          <div class="testi-slide-who"><div class="testi-avatar">DD</div><div><b>David Didur</b><span>Design Director — Think2Thing Inc.</span></div></div>
+        </div>
+      </div>
+      <div class="testi-controls">
+        <div class="testi-arrow" id="testiPrev" role="button" aria-label="Previous testimonial"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="testi-dots" id="testiDots"></div>
+        <div class="testi-arrow" id="testiNext" role="button" aria-label="Next testimonial"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </div>
+    <div style="margin-top:24px;"><a class="svc-link" href="https://www.raylan.com/testimonials/">Read more testimonials →</a></div>
+  </div>
+</section>
+
+<section class="band" id="community">
+  <div class="inner reveal">
+    <div class="eyebrow">In the community</div>
+    <h2 class="section-title" style="margin-top:14px;">Doing what we say, beyond the job site.</h2>
+    <p style="color:var(--ink-dim); margin-top:16px; max-width:600px; font-size:15.5px;">Raylan is proud to support the following organizations.</p>
+    <div class="community-static">
+      <div class="medallion" style="animation-duration:7.5s;">
+        <div class="medallion-face"><img src="https://www.raylan.com/wp-content/uploads/2018/01/princess-margaret-hospital.png" alt="Princess Margaret Hospital"></div>
+        <div class="medallion-face medallion-back"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 L4 14 L11 14 L10 22 L20 9 L13 9 Z"/></svg><span>Community partner</span></div>
+      </div>
+      <div class="medallion" style="animation-duration:8.6s;">
+        <div class="medallion-face"><img src="https://www.raylan.com/wp-content/uploads/2018/01/the-ride-to-conquer-cancer.png" alt="The Ride to Conquer Cancer"></div>
+        <div class="medallion-face medallion-back"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 L4 14 L11 14 L10 22 L20 9 L13 9 Z"/></svg><span>Community partner</span></div>
+      </div>
+      <div class="medallion" style="animation-duration:7.1s;">
+        <div class="medallion-face"><img src="https://www.raylan.com/wp-content/uploads/2018/01/wsmha.png" alt="Stouffville Minor Hockey Association"></div>
+        <div class="medallion-face medallion-back"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 L4 14 L11 14 L10 22 L20 9 L13 9 Z"/></svg><span>Community partner</span></div>
+      </div>
+      <div class="medallion" style="animation-duration:9.2s;">
+        <div class="medallion-face"><img src="https://www.raylan.com/wp-content/uploads/2018/01/canadian-breast-cancer-foundation.png" alt="Canadian Breast Cancer Foundation"></div>
+        <div class="medallion-face medallion-back"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 L4 14 L11 14 L10 22 L20 9 L13 9 Z"/></svg><span>Community partner</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="contact">
+  <div class="inner reveal">
+    <div class="eyebrow">Visit or call</div>
+    <h2 class="section-title" style="margin-top:14px;">Downtown Toronto core, Bay Street.</h2>
+    <div class="contact-grid">
+      <div class="map-frame tilt" id="mapFrame">
+        <iframe src="https://www.google.com/maps?q=483+Bay+Street,+Toronto,+ON+M5G+2C9&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <canvas class="globe-canvas" id="globeCanvas"></canvas>
+        <div class="globe-hud" id="globeHud">Acquiring orbit…</div>
+        <button class="replay-btn" id="replayFlyover" type="button">↻ Replay flyover</button>
+      </div>
+      <div class="contact-card tilt">
+        <div>
+          <div class="contact-line"><span>Address</span><span>483 Bay St, B1 Level South, Toronto ON M5G 2C9</span></div>
+          <div class="contact-line"><span>Phone</span><a href="tel:4165988892">416-598-8892</a></div>
+          <div class="contact-line"><span>Fax</span><span>416-977-0185</span></div>
+          <div class="contact-line"><span>Email</span><a href="mailto:info@raylan.com">info@raylan.com</a></div>
+        </div>
+        <a class="btn btn-primary" style="margin-top:26px; justify-content:center;" href="mailto:info@raylan.com">Request a quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band reveal">
+  <div class="eyebrow" style="justify-content:center;">Get started</div>
+  <h2>Competitively priced. Licensed and insured. Let's talk about your building.</h2>
+  <a class="btn btn-primary" href="mailto:info@raylan.com">Request a quote</a>
+</div>
+
+<footer>
+  <div class="footer-floorgrid"></div>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand">
+        <canvas class="bolt-mark" id="boltFooter"></canvas>
+        <img src="https://www.raylan.com/wp-content/uploads/2018/01/Raylan-Logo-dark.png" alt="Raylan Electrical Systems Inc.">
+      </div>
+      <p>Raylan Electrical Systems Inc. — commercial electrical and mechanical construction and maintenance in downtown Toronto since 1989.</p>
+    </div>
+    <div class="footer-col">
+      <h4><span class="icon-3d icon-3d-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4L21 6l-3-3z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Services</h4>
+      <div><a href="https://www.raylan.com/electrical-construction-and-maintenance/"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 20 L4 12 L10 12 L10 4 L20 4 M20 4 L20 10 M20 4 L16 4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg></span>Electrical construction</a></div>
+      <div><a href="https://www.raylan.com/fire-alarm-systems/"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 L12 6 M12 18 L12 21 M3 12 L6 12 M18 12 L21 12 M6 6 L8 8 M18 6 L16 8 M6 18 L8 16 M18 18 L16 16" stroke-linecap="round"/><circle cx="12" cy="12" r="4"/></svg></span>Fire alarm systems</a></div>
+      <div><a href="https://www.raylan.com/security-systems/"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 L19 6.5 L19 12 C19 16.5 16 19.7 12 21 C8 19.7 5 16.5 5 12 L5 6.5 Z" stroke-linejoin="round"/><path d="M9 12 L11 14 L15.5 9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Security systems</a></div>
+      <div><a href="https://www.raylan.com/communication-network-cabling/"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M8.1 11 L15.9 6.9 M8.1 13 L15.9 17.1" stroke-linecap="round"/></svg></span>Network cabling</a></div>
+      <div><a href="https://www.raylan.com/integrated-automation-building-controls/"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 4 L8 8 L16 8 L16 4 M8 16 L8 20 M16 16 L16 20 M4 12 L8 12 M16 12 L20 12" stroke-linecap="round"/></svg></span>Building automation</a></div>
+      <div><a href="https://www.raylan.com/emergency-stand-by-ups-installations/"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M13 2 L4 14 L11 14 L10 22 L20 9 L13 9 Z" stroke-linejoin="round" stroke-linecap="round"/></svg></span>Standby power &amp; UPS</a></div>
+    </div>
+    <div class="footer-col">
+      <h4><span class="icon-3d icon-3d-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 21 L4 9 L12 4 L20 9 L20 21" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21 L9 14 L15 14 L15 21" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Company</h4>
+      <div><a href="#about"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 21 L4 9 L12 4 L20 9 L20 21" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21 L9 14 L15 14 L15 21" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Who we are</a></div>
+      <div><a href="#team"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14c2.5.4 4.5 2.5 4.5 6" stroke-linecap="round"/></svg></span>Our team</a></div>
+      <div><a href="https://www.raylan.com/customer-success"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 4h8v4a4 4 0 0 1-8 0V4Z"/><path d="M8 5H5a2 2 0 0 0 2 4M16 5h3a2 2 0 0 1-2 4" stroke-linecap="round"/><path d="M12 12v3M9 19h6M10 19v-2.5h4V19" stroke-linecap="round"/></svg></span>Customer success</a></div>
+      <div><a href="https://www.raylan.com/testimonials/"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 9h3v4H8a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 9h3v4h-3a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Testimonials</a></div>
+    </div>
+    <div class="footer-col">
+      <h4><span class="icon-3d icon-3d-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5c0-.6.4-1 1-1h2.5c.4 0 .8.3.9.7l1 3.2c.1.4 0 .8-.3 1L7.5 10.4a12 12 0 0 0 6.1 6.1l1.5-1.6c.3-.3.7-.4 1-.3l3.2 1c.4.1.7.5.7.9V19c0 .6-.4 1-1 1h-1C10.9 20 4 13.1 4 5Z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Contact</h4>
+      <div><a href="tel:4165988892"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5c0-.6.4-1 1-1h2.5c.4 0 .8.3.9.7l1 3.2c.1.4 0 .8-.3 1L7.5 10.4a12 12 0 0 0 6.1 6.1l1.5-1.6c.3-.3.7-.4 1-.3l3.2 1c.4.1.7.5.7.9V19c0 .6-.4 1-1 1h-1C10.9 20 4 13.1 4 5Z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>416-598-8892</a></div>
+      <div style="align-items:flex-start;"><span class="icon-3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.2"/></svg></span><span>483 Bay Street, B1 Level South<br>Toronto, ON&nbsp; M5G 2C9</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Raylan Electrical Systems Inc.</span>
+    <span>Founded 1989 — Toronto, Canada</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- hero: full building infrastructure scene ---------- */
+  var wrap = document.querySelector('.drawing-canvas-wrap');
+  var canvas = document.getElementById('scene-canvas');
+  var scene = new THREE.Scene();
+
+  function size(){ return { w: wrap.clientWidth, h: wrap.clientHeight }; }
+  var s = size();
+  var d = 4.7;
+  var aspect = s.w / (s.h || 1);
+  var camera = new THREE.OrthographicCamera(-d*aspect, d*aspect, d, -d, 0.1, 100);
+  camera.position.set(6.4, 5.2, 6.4);
+
+  var renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:true});
+  renderer.setClearColor(0x000000, 0);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(s.w, s.h);
+
+  var group = new THREE.Group();
+  scene.add(group);
+
+  var steel = new THREE.LineBasicMaterial({color:0x475269, transparent:true, opacity:0.6});
+  var steelFaint = new THREE.LineBasicMaterial({color:0x8A93A3, transparent:true, opacity:0.35});
+  var steelColumn = new THREE.LineBasicMaterial({color:0x6B7688, transparent:true, opacity:0.45});
+  var brassLine = new THREE.LineBasicMaterial({color:0x16345E, transparent:true, opacity:0.8});
+  var dashShaft = new THREE.LineDashedMaterial({color:0x475269, transparent:true, opacity:0.55, dashSize:0.08, gapSize:0.06});
+  var dotMat = new THREE.MeshBasicMaterial({color:0x6B7688});
+
+  var footprintW = 3.0, footprintD = 3.0, floors = 12, floorH = 0.48, totalHeight = floors*floorH;
+  var hw = footprintW/2, hd = footprintD/2;
+  camera.lookAt(0, totalHeight*0.42, 0);
+
+  /* floor slabs: wire outline + faint translucent fill so floors read as real plates */
+  for(var i=0;i<=floors;i++){
+    var y = i*floorH;
+    var floorEdges = new THREE.EdgesGeometry(new THREE.BoxGeometry(footprintW, 0.015, footprintD));
+    var floorLines = new THREE.LineSegments(floorEdges, i===0||i===floors ? steel : steelFaint);
+    floorLines.position.y = y;
+    group.add(floorLines);
+
+    if(i>0 && i<floors){
+      var slab = new THREE.Mesh(new THREE.PlaneGeometry(footprintW-0.06, footprintD-0.06), new THREE.MeshBasicMaterial({color:0xC7CEDA, transparent:true, opacity:0.09, side:THREE.DoubleSide, depthWrite:false}));
+      slab.rotation.x = -Math.PI/2;
+      slab.position.y = y;
+      group.add(slab);
+    }
+  }
+
+  /* perimeter structural column grid (corners + mid-span) */
+  var colPts = [[hw,hd],[0,hd],[-hw,hd],[-hw,0],[-hw,-hd],[0,-hd],[hw,-hd],[hw,0]];
+  colPts.forEach(function(c){
+    var isCorner = Math.abs(c[0])===hw && Math.abs(c[1])===hd;
+    var geo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(c[0],0,c[1]), new THREE.Vector3(c[0],totalHeight,c[1])]);
+    group.add(new THREE.Line(geo, isCorner ? steel : steelColumn));
+  });
+
+  /* security camera coverage markers at four corners, entrance level and a mid floor */
+  [1, Math.round(floors*0.55)].forEach(function(fIdx){
+    var fy = fIdx*floorH;
+    colPts.filter(function(c){return Math.abs(c[0])===hw && Math.abs(c[1])===hd;}).forEach(function(c){
+      var cone = new THREE.Mesh(new THREE.ConeGeometry(0.11, 0.16, 6, 1, true), new THREE.MeshBasicMaterial({color:0x6C7A93, transparent:true, opacity:0.55, side:THREE.DoubleSide}));
+      cone.position.set(c[0]*0.94, fy+0.1, c[1]*0.94);
+      cone.rotation.x = Math.PI;
+      cone.rotation.z = Math.atan2(c[0], c[1]) * 0.4;
+      group.add(cone);
+    });
+  });
+
+  /* dashed core shaft housing the six risers */
+  var shaftSize = 1.05;
+  var shaftEdges = new THREE.EdgesGeometry(new THREE.BoxGeometry(shaftSize, totalHeight, shaftSize));
+  var shaftLines = new THREE.LineSegments(shaftEdges, dashShaft);
+  shaftLines.position.y = totalHeight/2;
+  shaftLines.computeLineDistances();
+  group.add(shaftLines);
+
+  /* six colour-coded riser bundles, one per Raylan discipline, with flowing current */
+  var systems = [
+    {color:0x16345E, name:'elec'},
+    {color:0xB5573F, name:'fire'},
+    {color:0x6C7A93, name:'sec'},
+    {color:0x3E8E8E, name:'comm'},
+    {color:0xB08D57, name:'auto'},
+    {color:0x8C6FB0, name:'power'}
+  ];
+  var riserRadius = 0.4;
+  var pulses = [];
+  var riserTops = [];
+  systems.forEach(function(sys, i){
+    var ang = (Math.PI*2/systems.length) * i;
+    var x = Math.cos(ang) * riserRadius, z = Math.sin(ang) * riserRadius;
+    riserTops.push({x:x, z:z, color:sys.color, name:sys.name});
+    var mat = new THREE.LineBasicMaterial({color:sys.color, transparent:true, opacity:0.92});
+    var geo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x,0.05,z), new THREE.Vector3(x,totalHeight-0.05,z)]);
+    group.add(new THREE.Line(geo, mat));
+
+    var dotColor = new THREE.MeshBasicMaterial({color:sys.color});
+    for(var p=0;p<4;p++){
+      var pulse = new THREE.Mesh(new THREE.SphereGeometry(0.034, 8, 8), dotColor);
+      pulse.position.set(x, 0.05, z);
+      group.add(pulse);
+      pulses.push({mesh:pulse, x:x, z:z, phase: p/4, speed:0.075 + i*0.005});
+    }
+
+    /* branch circuits off every floor toward the perimeter */
+    for(var f=1; f<floors; f++){
+      var fy = f*floorH;
+      var bx = x + Math.cos(ang + i*0.7) * (hw - riserRadius) * 0.85;
+      var bz = z + Math.sin(ang + i*0.7) * (hd - riserRadius) * 0.85;
+      var branchGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x,fy,z), new THREE.Vector3(bx,fy,bz)]);
+      group.add(new THREE.Line(branchGeo, steelFaint));
+
+      /* device marker at the branch end for fire / security / comms, sparse and deterministic */
+      if((sys.name==='fire' || sys.name==='sec' || sys.name==='comm') && f%2===0){
+        var dev = new THREE.Mesh(new THREE.SphereGeometry(0.024, 6, 6), dotColor);
+        dev.position.set(bx, fy, bz);
+        group.add(dev);
+      }
+    }
+  });
+
+  /* small distribution panel marker per floor at the core */
+  for(var f2=1; f2<floors; f2++){
+    var py = f2*floorH;
+    var panel = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.02, 0.12), dotMat);
+    panel.position.set(0, py, 0);
+    group.add(panel);
+  }
+
+  /* comms/IT closet and automation control room, tapped off the shaft at two different floors */
+  function equipRoom(floorIdx, offsetAngle, w, h, dep, mat){
+    var fy = floorIdx*floorH + h/2 + 0.02;
+    var rx = Math.cos(offsetAngle) * (hw - w/2 - 0.1);
+    var rz = Math.sin(offsetAngle) * (hd - dep/2 - 0.1);
+    var box = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(w, h, dep)), mat);
+    box.position.set(rx, fy, rz);
+    group.add(box);
+    var tie = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, fy, 0), new THREE.Vector3(rx, fy, rz)]);
+    group.add(new THREE.Line(tie, steelFaint));
+  }
+  equipRoom(Math.round(floors*0.35), 0.9, 0.32, 0.24, 0.26, new THREE.LineBasicMaterial({color:0x3E8E8E, transparent:true, opacity:0.7}));
+  equipRoom(Math.round(floors*0.7), 2.6, 0.3, 0.24, 0.24, new THREE.LineBasicMaterial({color:0xB08D57, transparent:true, opacity:0.7}));
+
+  /* ground-level service entrance, switchgear room and UPS/battery room, feeding the core */
+  var switchGeo = new THREE.BoxGeometry(0.55, 0.34, 0.4);
+  var switchEdges = new THREE.LineSegments(new THREE.EdgesGeometry(switchGeo), brassLine);
+  switchEdges.position.set(hw-0.38, 0.17, hd-0.3);
+  group.add(switchEdges);
+  var feedGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0.1,0), switchEdges.position.clone().setY(0.1)]);
+  group.add(new THREE.Line(feedGeo, brassLine));
+
+  var upsEdges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(0.4, 0.28, 0.34)), new THREE.LineBasicMaterial({color:0x8C6FB0, transparent:true, opacity:0.7}));
+  upsEdges.position.set(hw-0.36, 0.14, -(hd-0.28));
+  group.add(upsEdges);
+  var upsTie = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0.1,0), upsEdges.position.clone().setY(0.1)]);
+  group.add(new THREE.Line(upsTie, steelFaint));
+
+  /* entrance canopy */
+  var canopyGeo = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(-hw*0.5, 0.5, hd), new THREE.Vector3(hw*0.5, 0.5, hd),
+    new THREE.Vector3(hw*0.5, 0.5, hd+0.35), new THREE.Vector3(-hw*0.5, 0.5, hd+0.35),
+    new THREE.Vector3(-hw*0.5, 0.5, hd)
+  ]);
+  group.add(new THREE.Line(canopyGeo, steel));
+
+  /* rooftop mechanical: standby generator + HVAC unit, generator tied to the standby-power riser */
+  var roofY = totalHeight + 0.4;
+  var roofEdges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(0.62, 0.38, 0.5)), steel);
+  roofEdges.position.set(-0.5, roofY, 0);
+  group.add(roofEdges);
+  var hvacEdges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(0.46, 0.3, 0.46)), steelColumn);
+  hvacEdges.position.set(0.55, totalHeight+0.32, -0.1);
+  group.add(hvacEdges);
+  var powerTop = riserTops[riserTops.length-1];
+  var tieGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(powerTop.x, totalHeight-0.05, powerTop.z), new THREE.Vector3(-0.5, roofY-0.19, 0)]);
+  group.add(new THREE.Line(tieGeo, new THREE.LineBasicMaterial({color:powerTop.color, transparent:true, opacity:0.7})));
+
+  /* podium annex adjacent to the tower — a second, lower volume typical of a downtown mixed-use site */
+  var podiumW = 1.7, podiumD = 1.3, podiumH = floorH*3;
+  var podiumX = -(hw + podiumW/2 + 0.45);
+  var podiumEdges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(podiumW, podiumH, podiumD)), steelFaint);
+  podiumEdges.position.set(podiumX, podiumH/2, 0);
+  group.add(podiumEdges);
+  for(var pf=1; pf<3; pf++){
+    var pfEdges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(podiumW, 0.01, podiumD)), steelFaint);
+    pfEdges.position.set(podiumX, pf*floorH, 0);
+    group.add(pfEdges);
+  }
+  var walkwayGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-hw, floorH*1.5, 0), new THREE.Vector3(podiumX+podiumW/2, floorH*1.5, 0)]);
+  group.add(new THREE.Line(walkwayGeo, steelFaint));
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+
+  /* slow inspection sweep plane travelling the height of the shaft */
+  var sweep = new THREE.Mesh(new THREE.PlaneGeometry(footprintW+0.5, footprintD+0.5), new THREE.MeshBasicMaterial({color:0x2C5AA0, transparent:true, opacity:0.06, side:THREE.DoubleSide, depthWrite:false}));
+  sweep.rotation.x = -Math.PI/2;
+  group.add(sweep);
+
+  function resize(){
+    var sz = size();
+    if(sz.w === 0 || sz.h === 0) return;
+    var a = sz.w / sz.h;
+    camera.left = -d*a; camera.right = d*a; camera.top = d; camera.bottom = -d;
+    camera.updateProjectionMatrix();
+    renderer.setSize(sz.w, sz.h);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  var mouseX = 0, targetX = 0;
+  window.addEventListener('mousemove', function(e){ mouseX = (e.clientX / window.innerWidth - 0.5); });
+
+  var clock = new THREE.Clock();
+  function animate(){
+    requestAnimationFrame(animate);
+    var t = clock.getElapsedTime();
+    if(!reduced){
+      targetX += (mouseX - targetX) * 0.02;
+      group.rotation.y = t * 0.045 + targetX * 0.25;
+      pulses.forEach(function(pu){
+        var travel = (t * pu.speed + pu.phase) % 1;
+        pu.mesh.position.y = 0.05 + travel * (totalHeight - 0.1);
+      });
+      var sweepT = (t * 0.09) % 2;
+      sweep.position.y = sweepT <= 1 ? sweepT * totalHeight : (2-sweepT) * totalHeight;
+    }
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  /* ---------- generic 3D ring builder (clients + testimonials) ---------- */
+  function buildRing(id){
+    var ring = document.getElementById(id);
+    if(!ring) return;
+    var items = ring.querySelectorAll('.ring-item, .testi-item');
+    var n = items.length;
+    if(!n) return;
+    var itemW = items[0].offsetWidth || 176;
+    var angle = 360 / n;
+    var half = (angle/2) * Math.PI/180;
+    var radius = (itemW/2) / Math.sin(half) + 46;
+    items.forEach(function(item, i){
+      var ang = angle * i;
+      item.style.transform = 'rotateY(' + ang + 'deg) translateZ(' + radius + 'px)';
+    });
+  }
+  function buildAllRings(){ buildRing('clientsRing'); buildRing('testiRing'); }
+  buildAllRings();
+  var ringResizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(ringResizeTimer);
+    ringResizeTimer = setTimeout(buildAllRings, 200);
+  });
+
+  /* ---------- testimonial slider ---------- */
+  (function(){
+    var track = document.getElementById('testiTrack');
+    if(!track) return;
+    var slides = track.querySelectorAll('.testi-slide');
+    var dotsWrap = document.getElementById('testiDots');
+    var idx = 0, timer = null;
+
+    slides.forEach(function(_, i){
+      var dot = document.createElement('div');
+      dot.className = 'testi-dot' + (i===0 ? ' active' : '');
+      dot.addEventListener('click', function(){ goTo(i); restart(); });
+      dotsWrap.appendChild(dot);
+    });
+    var dots = dotsWrap.querySelectorAll('.testi-dot');
+
+    function goTo(i){
+      slides[idx].classList.remove('active');
+      dots[idx].classList.remove('active');
+      idx = (i + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+      dots[idx].classList.add('active');
+    }
+    function restart(){
+      if(reduced) return;
+      clearInterval(timer);
+      timer = setInterval(function(){ goTo(idx+1); }, 5500);
+    }
+
+    document.getElementById('testiNext').addEventListener('click', function(){ goTo(idx+1); restart(); });
+    document.getElementById('testiPrev').addEventListener('click', function(){ goTo(idx-1); restart(); });
+    restart();
+  })();
+
+  /* ---------- 3D bolt brand mark: real extruded geometry, not a CSS trick ---------- */
+  function makeBoltScene(canvasEl){
+    if(!canvasEl) return;
+    var bScene = new THREE.Scene();
+    var bCam = new THREE.PerspectiveCamera(38, 1, 0.1, 20);
+    bCam.position.set(0, 0, 4.4);
+    var bRenderer = new THREE.WebGLRenderer({canvas:canvasEl, antialias:true, alpha:true});
+    bRenderer.setClearColor(0x000000, 0);
+
+    var shape = new THREE.Shape();
+    shape.moveTo(0.05, 1.0);
+    shape.lineTo(-0.55, 0.05);
+    shape.lineTo(-0.08, 0.05);
+    shape.lineTo(-0.32, -1.0);
+    shape.lineTo(0.55, 0.15);
+    shape.lineTo(0.08, 0.15);
+    shape.lineTo(0.05, 1.0);
+    var geo = new THREE.ExtrudeGeometry(shape, {depth:0.22, bevelEnabled:true, bevelThickness:0.03, bevelSize:0.02, bevelSegments:1, curveSegments:2});
+    geo.center();
+    var mat = new THREE.MeshStandardMaterial({color:0x16345E, metalness:0.5, roughness:0.35, emissive:0x0a1a30, emissiveIntensity:0.35});
+    var mesh = new THREE.Mesh(geo, mat);
+    mesh.scale.setScalar(1.05);
+    bScene.add(mesh);
+
+    bScene.add(new THREE.AmbientLight(0xffffff, 0.55));
+    var bKey = new THREE.DirectionalLight(0xffe8c8, 1.1);
+    bKey.position.set(2, 3, 4);
+    bScene.add(bKey);
+    var bRim = new THREE.DirectionalLight(0xc9a876, 0.5);
+    bRim.position.set(-2, -1, -3);
+    bScene.add(bRim);
+
+    function resizeBolt(){
+      var w = canvasEl.clientWidth || 30, h = canvasEl.clientHeight || 30;
+      bRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      bRenderer.setSize(w, h, false);
+      bCam.aspect = w / h;
+      bCam.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', resizeBolt);
+    resizeBolt();
+
+    var bClock = new THREE.Clock();
+    function boltLoop(){
+      requestAnimationFrame(boltLoop);
+      if(!reduced){
+        var t = bClock.getElapsedTime();
+        mesh.rotation.y = t * 0.9;
+        mesh.rotation.x = Math.sin(t * 0.6) * 0.25;
+      }
+      bRenderer.render(bScene, bCam);
+    }
+    boltLoop();
+  }
+  makeBoltScene(document.getElementById('boltNav'));
+  makeBoltScene(document.getElementById('boltFooter'));
+  makeBoltScene(document.getElementById('boltMobile'));
+
+  /* ---------- live 3D favicon: renders the same lit, rotating bolt and streams frames to the tab icon ---------- */
+  (function(){
+    var favCanvas = document.getElementById('faviconCanvas');
+    var favLink = document.getElementById('favicon');
+    if(!favCanvas || !favLink) return;
+
+    var W = 64, H = 64;
+    var fScene = new THREE.Scene();
+    var fCam = new THREE.PerspectiveCamera(38, 1, 0.1, 20);
+    fCam.position.set(0, 0, 4.4);
+    var fRenderer = new THREE.WebGLRenderer({canvas:favCanvas, antialias:true, alpha:true, preserveDrawingBuffer:true});
+    fRenderer.setClearColor(0x000000, 0);
+    fRenderer.setSize(W, H, false);
+
+    var fShape = new THREE.Shape();
+    fShape.moveTo(0.05, 1.0);
+    fShape.lineTo(-0.55, 0.05);
+    fShape.lineTo(-0.08, 0.05);
+    fShape.lineTo(-0.32, -1.0);
+    fShape.lineTo(0.55, 0.15);
+    fShape.lineTo(0.08, 0.15);
+    fShape.lineTo(0.05, 1.0);
+    var fGeo = new THREE.ExtrudeGeometry(fShape, {depth:0.22, bevelEnabled:true, bevelThickness:0.03, bevelSize:0.02, bevelSegments:1, curveSegments:2});
+    fGeo.center();
+    var fMat = new THREE.MeshStandardMaterial({color:0x2C5AA0, metalness:0.5, roughness:0.3, emissive:0x0a1a30, emissiveIntensity:0.45});
+    var fMesh = new THREE.Mesh(fGeo, fMat);
+    fMesh.scale.setScalar(1.35);
+    fScene.add(fMesh);
+
+    fScene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    var fKey = new THREE.DirectionalLight(0xffffff, 1.1);
+    fKey.position.set(2, 3, 4);
+    fScene.add(fKey);
+    var fRim = new THREE.DirectionalLight(0x2C5AA0, 0.5);
+    fRim.position.set(-2, -1, -3);
+    fScene.add(fRim);
+
+    var fClock = new THREE.Clock();
+    function favLoop(){
+      requestAnimationFrame(favLoop);
+      if(!reduced){
+        var t = fClock.getElapsedTime();
+        fMesh.rotation.y = t * 1.0;
+        fMesh.rotation.x = Math.sin(t * 0.7) * 0.32;
+      }
+      fRenderer.render(fScene, fCam);
+    }
+    favLoop();
+
+    if(!reduced){
+      setInterval(function(){
+        try{ favLink.href = favCanvas.toDataURL('image/png'); }catch(e){}
+      }, 180);
+    }
+  })();
+
+  /* ---------- 3D globe flyover: rotates to Toronto, dollies in, reveals the map ---------- */
+  (function(){
+    var mapFrame = document.getElementById('mapFrame');
+    var globeCanvas = document.getElementById('globeCanvas');
+    var hud = document.getElementById('globeHud');
+    var replayBtn = document.getElementById('replayFlyover');
+    if(!mapFrame || !globeCanvas) return;
+
+    var gScene = new THREE.Scene();
+    var gCam = new THREE.PerspectiveCamera(45, 1, 0.05, 50);
+    var gRenderer = new THREE.WebGLRenderer({canvas:globeCanvas, antialias:true, alpha:true});
+    gRenderer.setClearColor(0xFFFFFF, 1);
+
+    var R = 2;
+    var globeGroup = new THREE.Group();
+    gScene.add(globeGroup);
+
+    var wireMat = new THREE.LineBasicMaterial({color:0x8A93A3, transparent:true, opacity:0.7});
+    globeGroup.add(new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.SphereGeometry(R, 22, 16)), wireMat));
+
+    var equatorMat = new THREE.LineBasicMaterial({color:0x16345E, transparent:true, opacity:0.6});
+    var eqPts = [];
+    for(var a=0; a<=64; a++){ var ang=(a/64)*Math.PI*2; eqPts.push(new THREE.Vector3(Math.cos(ang)*R, 0, Math.sin(ang)*R)); }
+    globeGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(eqPts), equatorMat));
+
+    function latLonToVec(lat, lon, radius){
+      var phi = (90 - lat) * (Math.PI/180);
+      var theta = (lon + 180) * (Math.PI/180);
+      return new THREE.Vector3(
+        -radius * Math.sin(phi) * Math.cos(theta),
+        radius * Math.cos(phi),
+        radius * Math.sin(phi) * Math.sin(theta)
+      );
+    }
+    var torontoPos = latLonToVec(43.6532, -79.3832, R);
+
+    var markerGeo = new THREE.SphereGeometry(0.045, 12, 12);
+    var markerMat = new THREE.MeshBasicMaterial({color:0x2C5AA0});
+    var marker = new THREE.Mesh(markerGeo, markerMat);
+    marker.position.copy(torontoPos);
+    globeGroup.add(marker);
+
+    var ringGeo = new THREE.RingGeometry(0.08, 0.1, 24);
+    var ringMat = new THREE.MeshBasicMaterial({color:0x2C5AA0, transparent:true, opacity:0.8, side:THREE.DoubleSide});
+    var pulseRing = new THREE.Mesh(ringGeo, ringMat);
+    pulseRing.position.copy(torontoPos);
+    pulseRing.lookAt(torontoPos.clone().multiplyScalar(2));
+    globeGroup.add(pulseRing);
+
+    gScene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    var gLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    gLight.position.set(3, 4, 5);
+    gScene.add(gLight);
+
+    function resizeGlobe(){
+      var w = mapFrame.clientWidth, h = mapFrame.clientHeight;
+      if(!w || !h) return;
+      gRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      gRenderer.setSize(w, h, false);
+      gCam.aspect = w / h;
+      gCam.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', resizeGlobe);
+    resizeGlobe();
+
+    var camStart = new THREE.Vector3(0, 1.8, 8.5);
+    var camEnd = torontoPos.clone().normalize().multiplyScalar(R + 0.55).add(new THREE.Vector3(0,0.05,0));
+    var targetYaw = -Math.atan2(torontoPos.z, torontoPos.x) + Math.PI/2;
+
+    var hudSteps = ['Acquiring orbit…', 'Toronto, Ontario', '483 Bay Street'];
+    var running = false, startT = null;
+    var DUR_ROTATE = 1600, DUR_DOLLY = 1900, DUR_HOLD = 500;
+    var TOTAL = DUR_ROTATE + DUR_DOLLY + DUR_HOLD;
+
+    function ease(t){ return 1 - Math.pow(1-t, 3); }
+
+    function setHud(text){ hud.textContent = text; hud.classList.add('show'); }
+
+    function runFlyover(ts){
+      if(startT === null) startT = ts;
+      var elapsed = ts - startT;
+
+      if(elapsed < DUR_ROTATE){
+        var p = ease(Math.min(elapsed/DUR_ROTATE, 1));
+        globeGroup.rotation.y = p * targetYaw;
+        gCam.position.lerpVectors(camStart, camStart, 0);
+        gCam.position.copy(camStart);
+        gCam.lookAt(0,0,0);
+        if(elapsed > 150) setHud(hudSteps[0]);
+      } else if(elapsed < DUR_ROTATE + DUR_DOLLY){
+        globeGroup.rotation.y = targetYaw;
+        var p2 = ease(Math.min((elapsed-DUR_ROTATE)/DUR_DOLLY, 1));
+        var worldMarker = torontoPos.clone().applyAxisAngle(new THREE.Vector3(0,1,0), targetYaw);
+        var camTarget = worldMarker.clone().normalize().multiplyScalar(R + 0.55);
+        gCam.position.lerpVectors(camStart, camTarget, p2);
+        gCam.lookAt(worldMarker);
+        globeCanvas.style.opacity = String(1 - Math.max(0, p2-0.55)/0.45);
+        if(p2 > 0.15 && p2 < 0.65) setHud(hudSteps[1]);
+        if(p2 >= 0.65) setHud(hudSteps[2]);
+      } else {
+        globeCanvas.style.opacity = '0';
+        hud.classList.remove('show');
+        globeCanvas.style.pointerEvents = 'none';
+        running = false;
+        gRenderer.render(gScene, gCam);
+        return;
+      }
+
+      gRenderer.render(gScene, gCam);
+      requestAnimationFrame(runFlyover);
+    }
+
+    function startFlyover(){
+      if(running) return;
+      running = true; startT = null;
+      globeCanvas.style.pointerEvents = 'auto';
+      globeCanvas.style.opacity = '1';
+      hud.classList.remove('show');
+      resizeGlobe();
+      requestAnimationFrame(runFlyover);
+    }
+
+    /* idle render before launch so the globe isn't blank */
+    gCam.position.copy(camStart);
+    gCam.lookAt(0,0,0);
+    gRenderer.render(gScene, gCam);
+
+    if(reduced){
+      globeCanvas.style.display = 'none';
+    } else if('IntersectionObserver' in window){
+      var gio = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ startFlyover(); gio.unobserve(entry.target); }
+        });
+      }, {threshold:0.5});
+      gio.observe(mapFrame);
+    } else {
+      startFlyover();
+    }
+
+    if(replayBtn){
+      replayBtn.addEventListener('click', function(){
+        globeGroup.rotation.y = 0;
+        startFlyover();
+      });
+    }
+  })();
+
+  /* ---------- team wall: whole grid tilts together as one plane toward the cursor ---------- */
+  var teamStage = document.querySelector('.team-stage');
+  var teamGrid = document.getElementById('teamGrid');
+  if(teamStage && teamGrid && !reduced){
+    teamStage.addEventListener('mousemove', function(e){
+      var r = teamStage.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      teamGrid.style.transform = 'rotateY(' + (x*10) + 'deg) rotateX(' + (-y*7) + 'deg)';
+    });
+    teamStage.addEventListener('mouseleave', function(){
+      teamGrid.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  }
+
+  /* ---------- generic mouse-tilt for any .tilt block ---------- */
+  if(!reduced){
+    document.querySelectorAll('.tilt').forEach(function(el){
+      el.addEventListener('mousemove', function(e){
+        var r = el.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = 'rotateY(' + (x*10) + 'deg) rotateX(' + (-y*10) + 'deg) translateZ(6px)';
+      });
+      el.addEventListener('mouseleave', function(){ el.style.transform = 'rotateY(0deg) rotateX(0deg) translateZ(0px)'; });
+    });
+  }
+
+  /* ---------- nav elevation on scroll ---------- */
+  var nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 12){ nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+  });
+
+  /* ---------- mobile menu ---------- */
+  (function(){
+    var btn = document.getElementById('hamburgerBtn');
+    var menu = document.getElementById('mobileMenu');
+    var closeBtn = document.getElementById('mobileClose');
+    if(!btn || !menu) return;
+    function openMenu(){
+      menu.classList.add('open');
+      btn.classList.add('open');
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      document.documentElement.style.overflow = '';
+    }
+    btn.addEventListener('click', function(){
+      menu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+    menu.querySelectorAll('.mobile-link').forEach(function(a){
+      a.addEventListener('click', closeMenu);
+    });
+    window.addEventListener('resize', function(){
+      if(window.innerWidth > 980) closeMenu();
+    });
+  })();
+
+  /* ---------- touch devices: tap to flip the 3D cards instead of hover ---------- */
+  if(window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches){
+    document.querySelectorAll('.svc-card, .team-card').forEach(function(card){
+      card.addEventListener('click', function(e){
+        var wasOpen = card.classList.contains('tap-flip');
+        document.querySelectorAll('.tap-flip').forEach(function(c){ if(c!==card) c.classList.remove('tap-flip'); });
+        card.classList.toggle('tap-flip', !wasOpen);
+      });
+    });
+  }
+
+  /* ---------- stat 3D flip-in + count-up ---------- */
+  var statEls = document.querySelectorAll('.stat');
+  function animateStat(el){
+    el.classList.add('in');
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    var out = el.querySelector('[data-count]');
+    var startTime = null;
+    function step(ts){
+      if(!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / 1100, 1);
+      out.textContent = Math.floor(progress * target);
+      if(progress < 1) requestAnimationFrame(step); else out.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- generic reveal + stat trigger ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, {threshold:0.12});
+    revealEls.forEach(function(el){ io.observe(el); });
+
+    var statIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ animateStat(entry.target); statIo.unobserve(entry.target); }
+      });
+    }, {threshold:0.4});
+    statEls.forEach(function(el){ statIo.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+    statEls.forEach(animateStat);
+  }
+
+  /* ---------- persistent full-page 3D background: spans the whole document height, colour-coded to Raylan's six disciplines, scrolls naturally with the page ---------- */
+  (function(){
+    var bgCanvas = document.getElementById('bg-scene');
+    if(!bgCanvas) return;
+
+    var bgScene = new THREE.Scene();
+    var bgRenderer = new THREE.WebGLRenderer({canvas:bgCanvas, antialias:true, alpha:true});
+    bgRenderer.setClearColor(0x000000, 0);
+    bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.25));
+
+    var bgCam = new THREE.OrthographicCamera(0, 1, 0, -1, 0.1, 100);
+    bgCam.position.z = 10;
+
+    var bgGroup = new THREE.Group();
+    bgScene.add(bgGroup);
+
+    /* the same six disciplines used everywhere else on the site, plus a neutral steel/navy majority */
+    var palette = [
+      {hex:0x16345E, weight:5},  /* electrical — dominant, it's the brand */
+      {hex:0x475269, weight:6},  /* neutral structure */
+      {hex:0xB5573F, weight:2},  /* fire */
+      {hex:0x6C7A93, weight:2},  /* security */
+      {hex:0x3E8E8E, weight:2},  /* comms */
+      {hex:0xB08D57, weight:2},  /* automation */
+      {hex:0x8C6FB0, weight:2}   /* standby power */
+    ];
+    var pool = [];
+    palette.forEach(function(p){ for(var i=0;i<p.weight;i++) pool.push(p.hex); });
+    function pickColor(){ return pool[Math.floor(Math.random()*pool.length)]; }
+
+    var matCache = {};
+    function nodeMaterial(hex, op){
+      var key = hex+'_'+op;
+      if(!matCache[key]) matCache[key] = new THREE.MeshBasicMaterial({color:hex, transparent:true, opacity:op});
+      return matCache[key];
+    }
+    var lineMatCache = {};
+    function lineMaterial(hex, op){
+      var key = 'l'+hex+'_'+op;
+      if(!lineMatCache[key]) lineMatCache[key] = new THREE.LineBasicMaterial({color:hex, transparent:true, opacity:op});
+      return lineMatCache[key];
+    }
+
+    var SCALE = 90; /* world units per pixel divisor */
+    var pulses = [];
+
+    function buildScene(){
+      while(bgGroup.children.length){ bgGroup.remove(bgGroup.children[bgGroup.children.length-1]); }
+      pulses = [];
+
+      var pageH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, window.innerHeight);
+      var pageW = window.innerWidth;
+
+      var worldW = pageW / SCALE;
+      var worldH = pageH / SCALE;
+      bgCam.left = 0; bgCam.right = worldW; bgCam.top = 0; bgCam.bottom = -worldH;
+      bgCam.updateProjectionMatrix();
+      bgRenderer.setSize(pageW, pageH, true);
+
+      var screens = pageH / window.innerHeight;
+      var count = Math.max(70, Math.round(48 * screens));
+      count = Math.min(count, 380);
+
+      var nodesData = [];
+      for(var i=0;i<count;i++){
+        var color = pickColor();
+        var p = new THREE.Vector3(Math.random()*worldW, -Math.random()*worldH, (Math.random()-0.5)*2);
+        nodesData.push({p:p, color:color});
+        var isHub = Math.random() < 0.07;
+        var dot = new THREE.Mesh(new THREE.SphereGeometry(isHub?0.09:0.045, 7, 7), nodeMaterial(color, isHub?0.5:0.38));
+        dot.position.copy(p);
+        bgGroup.add(dot);
+      }
+
+      var threshold = worldW / 8.5;
+      var edgesData = [];
+      for(var a=0;a<nodesData.length;a++){
+        var connections = 0;
+        for(var b=a+1;b<nodesData.length && connections<4; b++){
+          if(nodesData[a].p.distanceTo(nodesData[b].p) < threshold){
+            var eGeo = new THREE.BufferGeometry().setFromPoints([nodesData[a].p, nodesData[b].p]);
+            bgGroup.add(new THREE.Line(eGeo, lineMaterial(nodesData[a].color, 0.2)));
+            edgesData.push([nodesData[a].p, nodesData[b].p, nodesData[a].color]);
+            connections++;
+          }
+        }
+      }
+
+      var pulseCount = Math.min(Math.round(count*0.35), edgesData.length);
+      edgesData.sort(function(){return Math.random()-0.5;}).slice(0, pulseCount).forEach(function(edge){
+        var pulse = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8, 8), nodeMaterial(edge[2], 0.7));
+        bgGroup.add(pulse);
+        pulses.push({mesh:pulse, a:edge[0], b:edge[1], phase:Math.random(), speed:0.03 + Math.random()*0.03});
+      });
+    }
+
+    buildScene();
+
+    var rebuildTimer;
+    function scheduleRebuild(){
+      clearTimeout(rebuildTimer);
+      rebuildTimer = setTimeout(buildScene, 300);
+    }
+    window.addEventListener('resize', scheduleRebuild);
+    window.addEventListener('load', scheduleRebuild);
+    setTimeout(scheduleRebuild, 900);
+    setTimeout(scheduleRebuild, 2200);
+
+    var bgClock = new THREE.Clock();
+    function bgAnimate(){
+      requestAnimationFrame(bgAnimate);
+      if(!reduced){
+        var t = bgClock.getElapsedTime();
+        bgGroup.rotation.z = Math.sin(t * 0.05) * 0.012;
+        pulses.forEach(function(pu){
+          var travel = (t * pu.speed + pu.phase) % 1;
+          pu.mesh.position.lerpVectors(pu.a, pu.b, travel);
+        });
+      }
+      bgRenderer.render(bgScene, bgCam);
+    }
+    bgAnimate();
+  })();
+})();
+</script>
+</body>
+</html>
